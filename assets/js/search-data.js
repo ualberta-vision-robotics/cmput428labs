@@ -16,13 +16,6 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cmput428labs/projects/";
           },
-        },{id: "nav-contact-info",
-          title: "Contact Info",
-          description: "members of the lab or group",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/cmput428labs/people/";
-          },
         },{id: "projects-optic-flow",
           title: 'Optic Flow',
           description: "blah blah blah",
