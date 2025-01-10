@@ -21,6 +21,8 @@ profile:
     <br>
     <h5>Justin Valentine</h5>
     <p>jvalenti@ualberta.ca</p>
+    <br>
+    <br>
 
 
 selected_papers: false # includes a list of papers marked as "selected={true}"
