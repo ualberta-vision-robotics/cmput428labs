@@ -16,8 +16,8 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cmput428labs/projects/";
           },
-        },{id: "nav-people",
-          title: "people",
+        },{id: "nav-contact-info",
+          title: "Contact Info",
           description: "members of the lab or group",
           section: "Navigation",
           handler: () => {
