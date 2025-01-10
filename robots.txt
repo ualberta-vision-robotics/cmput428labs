@@ -1,1 +1,1 @@
-User-agent: * Disallow: Sitemap: https://ualberta-vision-robotics.github.io/cmput428labs//sitemap.xml
+User-agent: * Disallow: Sitemap: https://ualberta-vision-robotics.github.io/cmput428labs/sitemap.xml
