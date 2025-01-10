@@ -1,10 +1,10 @@
 ---
 layout: page
-title: project 4
+title: lab 2.2
 description: another without an image
 img:
 importance: 3
-category: fun
+category: lab2
 ---
 
 Every project has a beautiful feature showcase page.
