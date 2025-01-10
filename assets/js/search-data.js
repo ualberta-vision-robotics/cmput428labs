@@ -4,63 +4,43 @@ const ninja = document.querySelector('ninja-keys');
 // add the home and posts menu items
 ninja.data = [{
     id: "nav-home",
-    title: "home",
+    title: "Home",
     section: "Navigation",
     handler: () => {
       window.location.href = "/cmput428labs/";
     },
   },{id: "nav-labs",
-          title: "labs",
-          description: "A growing collection of your cool projects.",
+          title: "Labs",
+          description: "Here you&#39;ll find the resources for each lab assignment, separated by topic.",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/cmput428labs/projects/";
+            window.location.href = "/cmput428labs/labs/";
           },
-        },{id: "projects-optic-flow",
-          title: 'Optic Flow',
-          description: "blah blah blah",
-          section: "Projects",handler: () => {
-              window.location.href = "/cmput428labs/projects/1_project/";
-            },},{id: "projects-tracking",
-          title: 'Tracking',
+        },{id: "projects-lab-1-1-optical-flow",
+          title: 'Lab 1.1 Optical Flow',
           description: "",
           section: "Projects",handler: () => {
-              window.location.href = "/cmput428labs/projects/2_project/";
-            },},{id: "projects-lab-2-1",
-          title: 'lab 2.1',
-          description: "a project that redirects to another website",
+              window.location.href = "/cmput428labs/labs/opticalflow";
+            },},{id: "projects-lab-1-2-tracking",
+          title: 'Lab 1.2 - Tracking',
+          description: "",
           section: "Projects",handler: () => {
-              window.location.href = "/cmput428labs/projects/3_project/";
-            },},{id: "projects-lab-2-2",
-          title: 'lab 2.2',
-          description: "another without an image",
+              window.location.href = "/cmput428labs/labs/tracking";
+            },},{id: "projects-lab-2-1-2d-projective-geometry-and-homography-estimation",
+          title: 'Lab 2.1 - 2D Projective Geometry and Homography Estimation',
+          description: "",
           section: "Projects",handler: () => {
-              window.location.href = "/cmput428labs/projects/4_project/";
-            },},{id: "projects-lab3",
-          title: 'lab3',
-          description: "a project with a background image",
+              window.location.href = "/cmput428labs/labs/2dgeometry";
+            },},{id: "projects-lab-2-2-3d-projective-geometry-and-stereo-reconstruction",
+          title: 'Lab 2.2 - 3D Projective Geometry and Stereo Reconstruction',
+          description: "",
           section: "Projects",handler: () => {
-              window.location.href = "/cmput428labs/projects/5_project/";
-            },},{id: "projects-project-6",
-          title: 'project 6',
-          description: "a project with no image",
+              window.location.href = "/cmput428labs/labs/3dgeometry";
+            },},{id: "projects-lab-3-structure-from-motion",
+          title: 'Lab 3 - Structure from Motion',
+          description: "",
           section: "Projects",handler: () => {
-              window.location.href = "/cmput428labs/projects/6_project/";
-            },},{id: "projects-project-7",
-          title: 'project 7',
-          description: "with background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/cmput428labs/projects/7_project/";
-            },},{id: "projects-project-8",
-          title: 'project 8',
-          description: "an other project with a background image and giscus comments",
-          section: "Projects",handler: () => {
-              window.location.href = "/cmput428labs/projects/8_project/";
-            },},{id: "projects-project-9",
-          title: 'project 9',
-          description: "another project with an image 🎉",
-          section: "Projects",handler: () => {
-              window.location.href = "/cmput428labs/projects/9_project/";
+              window.location.href = "/cmput428labs/labs/structurefrommotion";
             },},{
       id: 'light-theme',
       title: 'Change theme to light',
