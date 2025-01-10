@@ -1,6 +1,6 @@
 ---
 layout: about
-title: home
+title: Home
 permalink: /
 subtitle: <a href='https://ugweb.cs.ualberta.ca/~vis/courses/CompVis/'>Back to course website</a>
 
@@ -35,7 +35,9 @@ The labs are separated into 3 topics:
 <ol>
   <li>Motion estimation and tracking</li>
   <ul>
-    <li>Lab 1.1 - Optical Flow</li>
+    <li>
+    <a href= '{{ site.baseurl | prepend: site.url | append: '/labs/opticalflow' }}'>Lab 1.1 - Optical Flow</a>
+    </li>
     <li>Lab 1.2 - Tracking</li>
   </ul>
   <li>Projective Geometry and Stereo</li>
@@ -43,12 +45,12 @@ The labs are separated into 3 topics:
     <li>Lab 2.1 - 2D Projective Geometry and Homography Estimation</li>
     <li>Lab 2.2 - 3D Projective Geometry and Stereo Reconstruction</li>
   </ul>
-  <li>Structure from Motion.</li>
+  <li>Structure from Motion</li>
   <ul>
     <li>Lab 3 - Structure from Motion</li>
   </ul>
 </ol>
-You will be given one week to complete each lab assignment (subtopic). Following the completion of each topic, you will submit a report and demo your code in the next lab session.
+You will be given one week to complete each lab assignment (e.g. Lab 1.1). Following the completion of each topic, you will submit a report and demo your code in the next lab session.
 Reports are to include answers to the written response questions in each lab assignment, as well as any results we ask for.
 <font color ='green'>For grad students, we will include additional items to address in green font.</font>
 <br>

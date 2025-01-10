@@ -1,11 +1,11 @@
 ---
 layout: page
-title: labs
-permalink: /projects/
-description: A growing collection of your cool projects.
+title: Labs
+permalink: /labs/
+description: Here you'll find the resources for each lab assignment, separated by topic.
 nav: true
 nav_order: 3
-display_categories: [lab1, lab2, lab3]
+display_categories: [Motion Estimation and Tracking, Projective Geometry and Stereo, Structure from Motion]
 horizontal: false
 ---
 
