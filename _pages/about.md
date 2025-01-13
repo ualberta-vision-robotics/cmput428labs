@@ -36,7 +36,7 @@ The labs are separated into 3 topics:
   <li>Motion estimation and tracking</li>
   <ul>
     <li>
-    <a href= '{{ '/labs/opticalflow' | relative_url }}'>Lab 1.1 - Optical Flow</a>
+    <a href= '{{ '/opticalflow' | relative_url }}'>Lab 1.1 - Optical Flow</a>
     </li>
     <li>Lab 1.2 - Tracking</li>
   </ul>
