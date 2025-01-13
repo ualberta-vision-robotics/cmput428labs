@@ -2,7 +2,7 @@
 layout: about
 title: Home
 permalink: /
-subtitle: <a href='https://ugweb.cs.ualberta.ca/~vis/courses/CompVis/'>Back to course website</a>
+# subtitle: <a href='https://ugweb.cs.ualberta.ca/~vis/courses/CompVis/'>Back to course website</a>
 
 profile:
   align: right
@@ -54,4 +54,6 @@ You will be given one week to complete each lab assignment (e.g. Lab 1.1). Follo
 Reports are to include answers to the written response questions in each lab assignment, as well as any results we ask for.
 <font color ='green'>For grad students, we will include additional items to address in green font.</font>
 <br>
-See the <a href='https://ugweb.cs.ualberta.ca/~vis/courses/CompVis/calendar.htm'>calendar</a> for submission deadlines. We also encourage you to join the course <a href='https://discord.gg/jjkNU8SGwP'>discord</a> for discussion and assistance.
+See the <a href='https://ugweb.cs.ualberta.ca/~vis/courses/CompVis/calendar.htm' target="_self">calendar</a> for submission deadlines. <!--We also encourage you to join the course <a href='https://discord.gg/jjkNU8SGwP'>discord</a> for discussion and assistance.-->
+<br>
+<br>
