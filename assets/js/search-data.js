@@ -9,7 +9,14 @@ ninja.data = [{
     handler: () => {
       window.location.href = "/cmput428labs/";
     },
-  },{id: "nav-labs",
+  },{id: "nav-policies",
+          title: "Policies",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/cmput428labs/policies";
+          },
+        },{id: "nav-labs",
           title: "Labs",
           description: "Here you&#39;ll find the resources for each lab assignment, separated by topic.",
           section: "Navigation",
