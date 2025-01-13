@@ -2,7 +2,7 @@
 layout: page
 title: Lab 3 - Structure from Motion
 description:
-permalink: /labs/structurefrommotion
+permalink: /structurefrommotion
 img: 
 importance: 1
 category: Structure from Motion
