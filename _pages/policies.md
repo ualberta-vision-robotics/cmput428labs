@@ -18,7 +18,7 @@ nav_order: 2
 
 <li>Demos and report submissions occur at the end of each topic. Sign up sheets will be released closer to demo dates.</li>
 
-<li>Demos will be short informal presentations of your code. Questions will be asked to evluate your understanding.</li>
+<li>Demos will be short informal presentations of your code. Questions will be asked to evaluate your understanding.</li>
 
 <li>Sharing video and images are allowed but submissions are expected to be your own work only.</li>
 </ul>
