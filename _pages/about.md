@@ -51,8 +51,8 @@ The labs are separated into 3 topics:
   </ul>
 </ol>
 You will be given one week to complete each lab assignment (e.g. Lab 1.1). Following the completion of each topic, you will submit a report and demo your code in the next lab session.
-Reports are to include answers to the written response questions in each lab assignment, as well as any results we ask for.
-<font color ='green'>For grad students, we will include additional items to address in green font.</font>
+Reports are to include answers to the written response questions in each lab assignment, as well as any results we ask for.<br>
+<strong><font color ='DarkViolet'>For grad students, we will include additional items to address in violet font.</font></strong>
 <br>
 See the <a href='https://ugweb.cs.ualberta.ca/~vis/courses/CompVis/calendar.htm' target="_self">calendar</a> for submission deadlines. <!--We also encourage you to join the course <a href='https://discord.gg/jjkNU8SGwP'>discord</a> for discussion and assistance.-->
 <br>
