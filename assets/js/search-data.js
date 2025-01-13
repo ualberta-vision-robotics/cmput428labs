@@ -18,9 +18,9 @@ ninja.data = [{
           },
         },{id: "projects-lab-1-1-optical-flow",
           title: 'Lab 1.1 Optical Flow',
-          description: "",
+          description: "Implementing basic optical flow for motion estimation.",
           section: "Projects",handler: () => {
-              window.location.href = "/cmput428labs/labs/opticalflow";
+              window.location.href = "/cmput428labs/labs/opticalflow2";
             },},{id: "projects-lab-1-2-tracking",
           title: 'Lab 1.2 - Tracking',
           description: "",
