@@ -2,7 +2,7 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: CMPUT 428 Labs # the website title (if blank, full name will be used instead)
+title: CMPUT 428/615 Labs # the website title (if blank, full name will be used instead)
 first_name: Computer Vision and Robotics Research Group
 middle_name:
 last_name:
