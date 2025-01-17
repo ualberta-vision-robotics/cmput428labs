@@ -38,7 +38,7 @@ The labs are separated into 3 topics:
     <li>
     <a href= '{{ '/opticalflow' | relative_url }}'>Lab 1.1 - Optical Flow</a>
     </li>
-    <li>Lab 1.2 - Tracking</li>
+    <a href= '{{ '/tracking' | relative_url }}'>Lab 1.2 - Tracking</a>
   </ul>
   <li>Projective Geometry and Stereo</li>
   <ul>
