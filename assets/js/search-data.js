@@ -76,6 +76,11 @@ ninja.data = [{
           description: "",
           section: "Projects",handler: () => {
               window.location.href = "/cmput428labs/structurefrommotion";
+            },},{id: "projects-lab-1-2-tracking",
+          title: 'Lab 1.2 - Tracking',
+          description: "",
+          section: "Projects",handler: () => {
+              window.location.href = "/cmput428labs/warp_tutorial";
             },},{
       id: 'light-theme',
       title: 'Change theme to light',
