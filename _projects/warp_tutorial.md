@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Lab 1.2 - Tracking
+title: Tutorial - Warping
 description:
 permalink: /warp_tutorial
 img: 
@@ -10,7 +10,7 @@ related_publications: false
 
 ## Overview
 
-This page will cover warping with OpenCV. We will show how to warp by manually finding our warped coordinates and then show how we can use OpenCV's built in functions. We first define the warp functions:
+This page will cover warping with OpenCV. We will show how to warp images by manually finding our warped coordinates. We will also show how we can use OpenCV's built in functions. We first define the warp functions:
 
 \begin{equation}
 \mathrm{~W}(\mathbf{x}, \mathbf{p})=\binom{\mathrm{p}_1 \mathrm{x}+\mathrm{p}_3 \mathrm{y}+\mathrm{p}_5}{\mathrm{p}_2 \mathrm{x}+\mathrm{p}_4 \mathrm{y}+\mathrm{p}_6} \\
@@ -31,7 +31,7 @@ X = np.arange(0, w, 1, dtype=int)
 Y = np.arange(0, h, 1, dtype=int)
 X, Y = np.meshgrid(X, Y)
 ```
-Here X and Y are the coordinate grids for our system. We will use them with remap to warp our function. Let's call remap on the source image using these coordinates.
+Here X and Y are the coordinate grids for our system. We will use them with remap to warp our image. Let's call remap on the source image using these coordinates.
 
 ```python
 img_remapped = cv2.remap(img, X, Y, cv2.INTER_LINEAR)
@@ -39,9 +39,9 @@ cv2.imshow("remapped", img_remapped)
 cv2.imshow("original", img)
 cv2.waitKey(0)
 ```
-When we display our remapped image, we can see that nothing changed. This is because X and Y contain the unwarped coordinate grid of our image.
+When we display our remapped image, we can see that it's unchanged. This is because X and Y contain the unwarped coordinate grids of our image.
 
-What remap is doing is for every pixel `img_remapped[i,i]`, we take find its intensity from `img[X[i,i], Y[i,i]]`. How interpixel values are treated is defined by the cv2.INTER_LINEAR flag.
+What remap is doing is for every pixel `img_remapped[i,i]`, we find its intensity from `img[X[i,i], Y[i,i]]`. How interpixel values are handled is defined by the cv2.INTER_LINEAR flag.
 
 Let's try warping our image.
 
@@ -81,11 +81,12 @@ cv2.imshow("original", img)
 cv2.waitKey(0)
 
 ```
-
+You can see that now our images are warped. Now we can crop them to find a warped image to compare our template against.
 --- 
 
 ## Grabbing a template with remap
-Instead of defining our coordinate system in the entire image, let's define it just in our region of interest.
+
+We can also crop our coordinates first, and then warp them. Instead of defining our coordinate system in the entire image, let's define it solely in our region of interest.
 
 ```python
 roi = (38, 323, 178, 204)
@@ -105,7 +106,7 @@ template_Y = Y[int(roi[1]):int(roi[1]+roi[3]), int(roi[0]):int(roi[0]+roi[2])]
 template_homogeneous = np.array([template_X.flatten(), template_Y.flatten(), np.ones_like(template_X).flatten()])
 ```
 
-Now let's warp our template coordinates:
+Now let's warp our cropped coordinates:
 
 ```python
 Affine = np.array([[-3.9929888e-01, -7.6305789e-01, 8.6678418e+02],
@@ -131,7 +132,7 @@ Visualize these yourself and you should see a match!
 
 ## Warping with built-in functions
 
-We can warp with OpenCV's built-in functions using the following format. Make sure cv2.WARP_INVERSE_MAP is entered as a flag to see warps in the way we've defined them in this course.
+We can warp with OpenCV's built-in functions using the following format. Make sure cv2.WARP_INVERSE_MAP is entered as a flag to ensure warps are handled in the way we've defined them in this course.
 
 ```python
 warp = cv2.warpAffine(img, Affine, img.shape, flags=cv2.WARP_INVERSE_MAP)
@@ -145,7 +146,9 @@ warped_template = cv2.warpAffine(img, Affine, img.shape, flags=cv2.WARP_INVERSE_
 
 It's important to not use these functions blindly. 
 
-I recommend you test your code with remap to gain a deeper understanding of what our code is actually doing during the development phase, and then switch over to these built-in functions later.
+I recommend you test your code with remap to gain a deeper understanding of what our warps are actually doing during the development phase, and then switch over to these built-in functions later.
+
 To plot a bounding box, I like to use `cv2.polylines()`. To construct the corner points for your box, warp the points of your original roi with `@`.
-Lastly, by change the source image of `remap()` or `warpAffine()` to the spatial gradients, we can obtain warped versions of our gradients too! Try this out for yourself!
+
+Lastly, by change the source image of `remap()` or `warpAffine()` to spatial gradients, we can obtain warped versions of our gradients too! Try this out for yourself!
 
