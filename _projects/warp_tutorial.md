@@ -46,14 +46,15 @@ What remap is doing is for every pixel `img_remapped[i,i]`, we find its intensit
 Let's try warping our image.
 
 ```python
+# defining our parameters for warping in homogeneous form
 Affine = np.array([[1, 0.2, 10], [0.1, 1, 10]])
 Homography = np.array([[1, 0, 0], [0, 1, 0], [0.0004, 0, 1]])
 
+# defining base coordinates in homogeneous form
 h, w = img.shape[:2]
 X = np.arange(0, w, 1, dtype=int)
 Y = np.arange(0, h, 1, dtype=int)
 X, Y = np.meshgrid(X, Y)
-
 coords_homogeneous = np.array([X.flatten(), Y.flatten(), np.ones_like(X).flatten()])
 
 # matrix multiplication to apply equation 1
