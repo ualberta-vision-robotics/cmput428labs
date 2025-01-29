@@ -42,7 +42,9 @@ The labs are separated into 3 topics:
   </ul>
   <li>Projective Geometry and Stereo</li>
   <ul>
-    <li>Lab 2.1 - 2D Projective Geometry and Homography Estimation</li>
+    <li>
+    <a href= '{{ '/2dgeometry' | relative_url }}'>Lab 2.1 - 2D Projective Geometry and Homography Estimation</a>
+    </li>
     <li>Lab 2.2 - 3D Projective Geometry and Stereo Reconstruction</li>
   </ul>
   <li>Structure from Motion</li>
