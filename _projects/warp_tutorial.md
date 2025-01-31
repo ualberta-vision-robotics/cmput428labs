@@ -13,11 +13,32 @@ related_publications: false
 This page will cover warping with OpenCV. We will show how to warp images by manually finding our warped coordinates. We will also show how we can use OpenCV's built in functions. We first define the warp functions:
 
 \begin{equation}
-\mathrm{~W}(\mathbf{x}, \mathbf{p})=\binom{\mathrm{p}_1 \mathrm{x}+\mathrm{p}_3 \mathrm{y}+\mathrm{p}_5}{\mathrm{p}_2 \mathrm{x}+\mathrm{p}_4 \mathrm{y}+\mathrm{p}_6} \\
+\mathrm{~W}(\mathbf{x}, \mathbf{p})=\binom{\mathrm{p}_1 \mathrm{x}+\mathrm{p}_3 \mathrm{y}+\mathrm{p}_5}{\mathrm{p}_2 \mathrm{x}+\mathrm{p}_4 \mathrm{y}+\mathrm{p}_6}
 \end{equation}
+
+
+\begin{equation}
+=\left(\begin{array}{ccc}
+\displaylines{p_1 & p_3 & p_5\\\ p_2 & p_4 & p_6}
+\end{array}\right)\left(\begin{array}{l}
+\displaylines{x\\\ y\\\ 1}
+\end{array}\right)
+\end{equation}
+
 \begin{equation}
 \mathrm{~W}(\mathbf{x}, \mathbf{p})=\frac{1}{1+p_7 x+p_8 y}\binom{\mathrm{p}_1 \mathrm{x}+\mathrm{p}_3 \mathrm{y}+\mathrm{p}_5}{\mathrm{p}_2 \mathrm{x}+\mathrm{p}_4 \mathrm{y}+\mathrm{p}_6}
 \end{equation}
+
+\begin{equation}
+=\left(\begin{array}{ccc}
+\displaylines{p_1 & p_3 & p_5\\\ p_2 & p_4 & p_6\\\ p_7 & p_8 & 1}
+\end{array}\right)\left(\begin{array}{l}
+\displaylines{x\\\ y\\\ 1}
+\end{array}\right)
+\end{equation}
+
+
+
 
 These serve as the basis for our transformations.
 
@@ -83,7 +104,8 @@ cv2.waitKey(0)
 
 ```
 You can see that now our images are warped. Now we can crop them to find a warped image to compare our template against.
---- 
+
+---
 
 ## Grabbing a template with remap
 
