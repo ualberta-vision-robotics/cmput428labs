@@ -51,7 +51,9 @@ The labs are separated into 3 topics:
   </ul>
   <li>Structure from Motion</li>
   <ul>
-    <li>Lab 3 - Structure from Motion</li>
+    <li>
+     <a href= '{{ '/structurefrommotion' | relative_url }}'>Lab 3 - Structure from Motion</a>
+     </li>
   </ul>
 </ol>
 You will be given one week to complete each lab assignment (e.g. Lab 1.1). Following the completion of each topic, you will submit a report and demo your code in the next lab session.
