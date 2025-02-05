@@ -27,7 +27,7 @@ import cv2
 
 def points_to_grid(pts, dimx, dimy):
     """
-    Returns meshgrid of coordinates to plot an image of dimension dimx x dimy, given its corner in pts.
+    Returns meshgrid of coordinates to plot an image of dimension dimx x dimy, given its corners in pts.
 
     Args:
         pts (ndarray): clockwise corner points starting with top left in row major order
@@ -44,7 +44,7 @@ def points_to_grid(pts, dimx, dimy):
         meshes.append(np.linspace(np.linspace(x1, x2, dimy), np.linspace(x4, x3, dimy), dimx))
     return meshes[0], meshes[1], meshes[2]
 
-im = cv2.cvtColor(cv2.resize(cv2.imread('titanic.webp'), (600, 600)), cv2.COLOR_BGR2RGBA)/255
+im = cv2.cvtColor(cv2.resize(cv2.imread('titanic_rising.jpg'), (600, 600)), cv2.COLOR_BGR2RGBA)/255
 
 # cornerpoints of our image in 3d space (row major)
 pts = np.array([[7.5, -2.5, 12], [-2.5, 7.5, 12], [0, 10, -3], [10, 0, -3]]).T 
