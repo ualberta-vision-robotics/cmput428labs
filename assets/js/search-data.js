@@ -76,6 +76,11 @@ ninja.data = [{
           description: "",
           section: "Projects",handler: () => {
               window.location.href = "/cmput428labs/structurefrommotion";
+            },},{id: "projects-axes3d-plot-surface-example",
+          title: 'Axes3D.plot_surface() example',
+          description: "",
+          section: "Projects",handler: () => {
+              window.location.href = "/cmput428labs/plot_surface";
             },},{id: "projects-tutorial-warping",
           title: 'Tutorial - Warping',
           description: "",
