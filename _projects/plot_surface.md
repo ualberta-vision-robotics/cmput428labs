@@ -41,7 +41,7 @@ def points_to_grid(pts, dimx, dimy):
     meshes = []
     for i in range(3):
         x1, x2, x3, x4 = pts[i]
-        meshes.append(np.linspace(np.linspace(x1, x2, dimy), np.linspace(x4, x3, dimy), dimx))
+        meshes.append(np.linspace(np.linspace(x1, x2, dimx), np.linspace(x4, x3, dimx), dimy))
     return meshes[0], meshes[1], meshes[2]
 
 im = cv2.cvtColor(cv2.resize(cv2.imread('titanic_rising.jpg'), (600, 600)), cv2.COLOR_BGR2RGBA)/255
