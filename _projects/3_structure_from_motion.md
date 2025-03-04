@@ -12,12 +12,12 @@ related_publications: false
 <div style="display: flex; justify-content: space-around; text-align: center;">
   <figure style="margin: 0;">
     <a href="https://drive.google.com/path_to_cow">
-      <img src="max.gif" alt="Cow" style="width:223px; height:auto;">
+      <img src="assets/img/max.gif" alt="Cow" style="width:223px; height:auto;">
     </a>
   </figure>
   <figure style="margin: 0;">
     <a href="https://drive.google.com/path_to_horse">
-      <img src="max_head.gif" alt="Horse" style="width:477px; height:auto;">
+      <img src="assets/img/max_head.gif" alt="Horse" style="width:477px; height:auto;">
     </a>
   </figure>
 </div>
@@ -35,12 +35,12 @@ The key insight is that when tracking $P$ feature points across $F$ frames (view
 <div style="display: flex; justify-content: space-around; text-align: center;">
   <figure style="margin: 0;">
     <a href="https://drive.google.com/path_to_cow">
-      <img src="Hotel.gif" alt="Cow" style="width:400px; height:auto;">
+      <img src="assets/img/Hotel.gif" alt="Cow" style="width:400px; height:auto;">
     </a>
   </figure>
   <figure style="margin: 0;">
     <a href="https://drive.google.com/path_to_horse">
-      <img src="affine_example.png" alt="Horse" style="width:307px; height:auto;">
+      <img src="assets/img/affine_example.png" alt="Horse" style="width:307px; height:auto;">
     </a>
   </figure>
 </div>
@@ -75,12 +75,12 @@ Using the provided data, and a short video recorded yourself do the following an
 
 <div style="display: flex; justify-content: space-around; text-align: center;">
   <figure style="margin: 0;">
-      <img src="tiger.png" alt="Cow" style="width:400px; height:auto;">
+      <img src="assets/img/tiger.png" alt="Cow" style="width:400px; height:auto;">
   </figure>
 </div>
 <div style="display: flex; justify-content: space-around; text-align: center;">
   <figure style="margin: 0;">
-      <img src="controls.png" alt="Horse" style="width:400px; height:auto;">
+      <img src="assets/img/controls.png" alt="Horse" style="width:400px; height:auto;">
   </figure>
 </div>
 
@@ -97,10 +97,10 @@ In this question, you will implement the metric upgrade procedure to transform y
 
 <div style="display: flex; justify-content: space-around; text-align: center;">
   <figure style="margin: 0;">
-  <img src="bunny_front.gif" alt="Cow" style="width:357px; height:auto;">
+  <img src="assets/img/bunny_front.gif" alt="Cow" style="width:357px; height:auto;">
   </figure>
 <figure style="margin: 0;">
-  <img src="bunny_front_2.png" alt="Horse" style="width:300px; height:auto;">
+  <img src="assets/img/bunny_front_2.png" alt="Horse" style="width:300px; height:auto;">
   </figure>
 </div>
 _(Left: Orthographic image sequence with tracked features Right: Resulting Euclidean reconstruction)_
@@ -176,10 +176,10 @@ The approach you will implement is based on Tomasi and Kanade's paper _"Shape an
 
 <div style="display: flex; justify-content: space-around; text-align: center;">
   <figure style="margin: 0;">
-  <img src="recon_sphere.png" alt="Cow" style="width:285px; height:auto;">
+  <img src="assets/img/recon_sphere.png" alt="Cow" style="width:285px; height:auto;">
   </figure>
   <figure style="margin: 0;">
-  <img src="sphere.gif" alt="Horse" style="width:430px; height:auto;">
+  <img src="assets/img/sphere.gif" alt="Horse" style="width:430px; height:auto;">
   </figure>
 </div>
 _(Left: Reconstructed sphere from a sequence of orthographic images. Right: Orthographic image sequence and Fill matrix visualization showing gradual accumulation of observations across frames (shaded entries are known image coordinates))_
@@ -191,7 +191,7 @@ The fill matrix lets us compute errors or updates **only on observed entries** w
 
 <div style="display: flex; justify-content: space-around; text-align: center;">
   <figure style="margin: 0;">
-      <img src="cowmesh_fill_matrix.png" alt="Cow" style="width:200px; height:auto;">
+      <img src="assets/img/cowmesh_fill_matrix.png" alt="Cow" style="width:200px; height:auto;">
     <figcaption>Cow</figcaption>
   </figure>
   <figure style="margin: 0;">
@@ -229,19 +229,19 @@ Implement matrix completion for Structure from Motion using the iterative factor
 <div style="display: flex; justify-content: space-around; text-align: center;">
   <figure style="margin: 0;">
     <a href="https://drive.google.com/path_to_cow">
-      <img src="cow.png" alt="Cow" style="width:200px; height:auto;">
+      <img src="assets/img/cow.png" alt="Cow" style="width:200px; height:auto;">
     </a>
     <figcaption>Cow</figcaption>
   </figure>
   <figure style="margin: 0;">
     <a href="https://drive.google.com/path_to_stanford_bunny">
-      <img src="stanford-bunny.png" alt="Stanford Bunny" style="width:130px; height:auto;">
+      <img src="assets/img/stanford-bunny.png" alt="Stanford Bunny" style="width:130px; height:auto;">
     </a>
     <figcaption>Stanford Bunny</figcaption>
   </figure>
   <figure style="margin: 0;">
     <a href="https://drive.google.com/path_to_horse">
-      <img src="horse.png" alt="Horse" style="width:200px; height:auto;">
+      <img src="assets/img/horse.png" alt="Horse" style="width:200px; height:auto;">
     </a>
     <figcaption>Horse</figcaption>
   </figure>
@@ -265,13 +265,3 @@ Test your implementation on the provided datasets (**Cow**, **Stanford Bunny**, 
 2. How does the low-rank assumption allow us to recover missing values?
 3. Explain the role of the fill matrix in computing reprojection error or updates.
 4. Compare the convergence behavior for different datasets. How many iterations were needed? Did the error decrease smoothly?
-
-## 3: Texturing From Sparse Points (40)
-
-Apply to Non-oculuded 
-- Need to make a tracker (circles)
-- SFM (use above)
-- Mesh the founds 3d points (use ??)
-- Use first frame to texture (use above)
-
-Apply to occluded -> bonus 
