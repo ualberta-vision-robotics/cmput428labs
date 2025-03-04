@@ -26,6 +26,8 @@ _(Left: 3D mesh of head reconstructed from a sequence of 60 orthographic images.
 
 In this assignment will implement an **affine factorization** method for structure from motion, you will then extend it to handle **missing data** (occlusions) via matrix completion, and perform a **metric upgrade** to recover the true Euclidean structure. You will test your implementation on provided datasets and on your own videos, and document your results with code, figures, and analysis.
 
+__Important: You can obtain 2 bonus marks for each section you finish and demo while present during the lab period we introduce the lab.__
+
 ---
 ## 1: Affine Factorization Method (30)
 **Background:** The affine factorization algorithm (described in Section 18.2 in Hartley & Zisserman, 2nd ed.) implements the Tomasi–Kanade method for Structure from Motion under an **orthographic projection** assumption.
