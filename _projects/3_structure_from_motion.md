@@ -34,14 +34,10 @@ The key insight is that when tracking $$P$$ feature points across $$F$$ frames (
 
 <div style="display: flex; justify-content: space-around; text-align: center;">
   <figure style="margin: 0;">
-    <a href="https://drive.google.com/path_to_cow">
       <img src="assets/img/Hotel.gif" alt="Cow" style="width:400px; height:auto;">
-    </a>
   </figure>
   <figure style="margin: 0;">
-    <a href="https://drive.google.com/path_to_horse">
       <img src="assets/img/affine_example.png" alt="Horse" style="width:307px; height:auto;">
-    </a>
   </figure>
 </div>
 _(Left: The classic 101-frame Hotel sequence by Tomasi. Right: Example of a 3D reconstruction output. Data available at: [https://slazebni.cs.illinois.edu/fall22/assignment5.html](https://slazebni.cs.illinois.edu/fall22/assignment5.html))_
@@ -224,19 +220,19 @@ Implement matrix completion for Structure from Motion using the iterative factor
 
 <div style="display: flex; justify-content: space-around; text-align: center;">
   <figure style="margin: 0;">
-    <a href="https://drive.google.com/path_to_cow">
+    <a href="[https://drive.google.com/path_to_cow](https://drive.google.com/drive/folders/1lZjl-x2dLMpfeujZsG8HYRtb0whtfA6F?usp=sharing)">
       <img src="assets/img/cow.png" alt="Cow" style="width:200px; height:auto;">
     </a>
     <figcaption>Cow</figcaption>
   </figure>
   <figure style="margin: 0;">
-    <a href="https://drive.google.com/path_to_stanford_bunny">
+    <a href="[https://drive.google.com/path_to_stanford_bunny](https://drive.google.com/drive/folders/1OnRPGfHeadjpeMXvLq9GEjTr56ANE28r?usp=sharing)">
       <img src="assets/img/stanford-bunny.png" alt="Stanford Bunny" style="width:130px; height:auto;">
     </a>
     <figcaption>Stanford Bunny</figcaption>
   </figure>
   <figure style="margin: 0;">
-    <a href="https://drive.google.com/path_to_horse">
+    <a href="[https://drive.google.com/path_to_horse](https://drive.google.com/drive/folders/19_s9aCQqcTsHty9cytsjz4EljkvuOuUg?usp=sharing)">
       <img src="assets/img/horse.png" alt="Horse" style="width:200px; height:auto;">
     </a>
     <figcaption>Horse</figcaption>
@@ -249,7 +245,7 @@ Test your implementation on the provided datasets (**Cow**, **Stanford Bunny**, 
 3. Analyze the quality of reconstruction
 
 ### Bonus (5):
-- Mesh your resulting 3D point and include it in your report. Explain what method you used in your report. 
+- Mesh your resulting 3D point cloud and include it in your report. Describe the meshing algorithm you implemented or library you utilized (e.g., Ball-Pivoting, Poisson Surface Reconstruction, Alpha Shapes). Explain why you selected this particular meshing approach and its suitability for the structure-from-motion point clouds. 
 
 ## Tools Provided & Resources
 - More 3D models: https://github.com/alecjacobson/common-3d-test-models/tree/master
