@@ -159,6 +159,12 @@ _(Image from "Shape and Motion from Image Streams under Orthography: A Factoriza
 
 Your final scaled reconstruction should now have proper real-world dimensions, allowing for 'accurate' measurements and integration with other 3D models or systems.
 
+### Submission Requirements
+Using the provided Hotel data, do the following and include it in your report:
+1. Plot the recovered **3D point cloud** (structure $$S$$)
+2. Visualize the **camera positions/orientations** (rows of $$R$$) in 3D
+3. Evaluate its accuracy
+
 ### Bonus (5 points)
 - **Perform** the same **metric upgrade** on your own video (this can be the same video you captured for Question 1). Include the 3D metric reconstruction in your report, and evaluate **its accuracy**
 
@@ -203,7 +209,7 @@ The fill matrix lets us compute errors or updates **only on observed entries** w
     <figcaption>Horse</figcaption>
   </figure>
 </div>
-_(Examples of fill matrices for various 3D models (shaded entries are known image coordinates). features are identified )_
+_(Examples of fill matrices for various 3D models (shaded entries are known image coordinates))_
 ### Task:
 Implement matrix completion for Structure from Motion using the iterative factorization approach:
 1. **Initialize missing entries** in the measurement matrix:
@@ -253,9 +259,10 @@ First test your implementation on the [sphere dataset](https://drive.google.com/
 - Mesh your resulting 3D point cloud and include it in your report. Describe the meshing algorithm you implemented or library you utilized (e.g., Ball-Pivoting, Poisson Surface Reconstruction, Alpha Shapes). Explain why you selected this particular meshing approach and its suitability for the structure-from-motion point clouds. 
 
 ## Tools Provided & Resources
-- More 3D models: https://github.com/alecjacobson/common-3d-test-models/tree/master
+- [More 3D models](https://github.com/alecjacobson/common-3d-test-models/tree/master)
 - A python script for generating your own weight matrix from a mesh 
 - A python script for down sampling a mesh
+- All code: [Google Drive Folder](https://drive.google.com/drive/folders/1bumUAnZhOPYdLX_gwY3BE_Qovm_3tapZ?usp=sharing)
 
 ## Report Questions
 1. Why can't we directly apply SVD to a matrix with missing entries?
