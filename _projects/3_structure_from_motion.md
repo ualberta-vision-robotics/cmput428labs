@@ -59,8 +59,9 @@ Implement the affine structure-from-motion algorithm following the procedure fro
 
     At this point, $$W \approx R S$$ gives an **affine reconstruction** of the cameras (in $$R$$) and 3D points (in $$S$$). Note that this reconstruction is not unique – any $$3 \times 3$$ invertible transform $$Q$$ gives an equivalent solution $$RQ$$ and $$Q^{-1}S$$.
 
+
 ### Submission Requirements
-Using the provided data, and a short video recorded yourself do the following and include it in your report:
+Using the provided Hotel data, and a short video recorded yourself do the following and include it in your report:
 1. Plot the recovered **3D point cloud** (structure $$S$$)
 2. Visualize the **camera positions/orientations** (rows of $$R$$) in 3D
 
@@ -240,7 +241,7 @@ Implement matrix completion for Structure from Motion using the iterative factor
   </figure>
 </div>
 ### Submission Requirements
-Test your implementation on the provided datasets (**Cow**, **Stanford Bunny**, **Horse** sequences) do the following and include it in your report:
+First test your implementation on the [sphere dataset](https://drive.google.com/drive/folders/1Rt-7p-AqWPCVtOgH-QbcfpDTCKoalzie?usp=drive_link) and then evaluate it on the following datasets (**Cow**, **Stanford Bunny**, **Horse** sequences) — note that the other data can be accessed through the above figure. Do the following and include it in your report:
 1. Plot the recovered **3D point cloud** (structure $$S$$)
 2. Visualize the **camera positions/orientations** (rows of $$R$$) in 3D
 3. Analyze the quality of reconstruction
