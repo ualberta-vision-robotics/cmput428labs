@@ -30,7 +30,7 @@ In this assignment will implement an **affine factorization** method for structu
 ## 1: Affine Factorization Method (30)
 **Background:** The affine factorization algorithm (described in Section 18.2 in Hartley & Zisserman, 2nd ed.) implements the Tomasi–Kanade method for Structure from Motion under an **orthographic projection** assumption.
 
-The key insight is that when tracking $P$ feature points across $F$ frames (views), the resulting $2F \times P$ **measurement matrix** will have rank 3 for a rigid scene under orthographic projection, after proper normalization (centering). This matrix can be factored into motion and shape matrices via Singular Value Decomposition (SVD).
+The key insight is that when tracking $$P$$ feature points across $$F$$ frames (views), the resulting $$2F \times P$$ **measurement matrix** will have rank 3 for a rigid scene under orthographic projection, after proper normalization (centering). This matrix can be factored into motion and shape matrices via Singular Value Decomposition (SVD).
 
 <div style="display: flex; justify-content: space-around; text-align: center;">
   <figure style="margin: 0;">
@@ -49,24 +49,24 @@ _(Left: The classic 101-frame Hotel sequence by Tomasi. Right: Example of a 3D r
 ### Task:
 Implement the affine structure-from-motion algorithm following the procedure from Lecture 07 (slides 27–30) or the textbook:
 
-1. **Form the measurement matrix $W$** using tracked feature coordinates:
-    - Normalize the data by subtracting the mean from each row (i.e., each image's $x$ and $y$ coordinates)
-    - This centering removes the translational motion and ensures $W$ is of rank 3 in the noise-free case
+1. **Form the measurement matrix $$W$$** using tracked feature coordinates:
+    - Normalize the data by subtracting the mean from each row (i.e., each image's $$x$$ and $$y$$ coordinates)
+    - This centering removes the translational motion and ensures $$W$$ is of rank 3 in the noise-free case
 
-2. **Perform singular value decomposition**: $W \approx U \Sigma V^T$
+2. **Perform singular value decomposition**: $$W \approx U \Sigma V^T$$
     - Take the top 3 singular values and corresponding vectors (because the ideal rank is 3)
-    - Extract $U_0$ (size $2F \times 3$), $\Sigma_0$ ($3 \times 3$), and $V_0$ ($P \times 3$)
+    - Extract $$U_0$$ (size $$2F \times 3$$), $$\Sigma_0$$ ($$3 \times 3$$), and $$V_0$$ ($$P \times 3$$)
 
 3. **Factor into motion and shape matrices**:
-    - Initialize the motion matrix as $R = U_0 \Sigma_0^{1/2}$
-    - Initialize the shape matrix as $S = \Sigma_0^{1/2} V_0^T$
+    - Initialize the motion matrix as $$R = U_0 \Sigma_0^{1/2}$$
+    - Initialize the shape matrix as $$S = \Sigma_0^{1/2} V_0^T$$
 
-    At this point, $W \approx R S$ gives an **affine reconstruction** of the cameras (in $R$) and 3D points (in $S$). Note that this reconstruction is not unique – any $3 \times 3$ invertible transform $Q$ gives an equivalent solution $RQ$ and $Q^{-1}S$.
+    At this point, $$W \approx R S$$ gives an **affine reconstruction** of the cameras (in $$R$$) and 3D points (in $$S$$). Note that this reconstruction is not unique – any $$3 \times 3$$ invertible transform $$Q$$ gives an equivalent solution $$RQ$$ and $$Q^{-1}S$$.
 
 ### Submission Requirements
 Using the provided data, and a short video recorded yourself do the following and include it in your report:
-1. Plot the recovered **3D point cloud** (structure $S$)
-2. Visualize the **camera positions/orientations** (rows of $R$) in 3D
+1. Plot the recovered **3D point cloud** (structure $$S$$)
+2. Visualize the **camera positions/orientations** (rows of $$R$$) in 3D
 
 ## Tools Provided & Resources
 - A video tracker with globally optimized feature tracking for high precision feature tracking 
@@ -106,36 +106,36 @@ In this question, you will implement the metric upgrade procedure to transform y
 _(Left: Orthographic image sequence with tracked features Right: Resulting Euclidean reconstruction)_
 ### a) Derive the Orthonormality Constraints
 
-Suppose the $i$-th camera has affine motion represented by the two 3D row vectors $r_{i1}$ and $r_{i2}$ (from the $R$ matrix). For a real rotation, we require:
+Suppose the $$i$$-th camera has affine motion represented by the two 3D row vectors $$r_{i1}$$ and $$r_{i2}$$ (from the $$R$$ matrix). For a real rotation, we require:
 $$ \begin{align} r_{i1} \cdot r_{i1}^T &= 1 \\ r_{i2} \cdot r_{i2}^T &= 1 \\ r_{i1} \cdot r_{i2}^T &= 0 \end{align} $$
-These constraints can be written in terms of the unknown metric upgrade matrix $L = QQ^T$ (a symmetric $3\times3$ matrix):
+These constraints can be written in terms of the unknown metric upgrade matrix $$L = QQ^T$$ (a symmetric $$3\times3$$ matrix):
 
-- For the first constraint: $r_{i1} L r_{i1}^T = 1$
-- For the second constraint: $r_{i2} L r_{i2}^T = 1$
-- For the third constraint: $r_{i1} L r_{i2}^T = 0$
+- For the first constraint: $$r_{i1} L r_{i1}^T = 1$$
+- For the second constraint: $$r_{i2} L r_{i2}^T = 1$$
+- For the third constraint: $$r_{i1} L r_{i2}^T = 0$$
 
-Write out these equations for all cameras, resulting in at most $3F$ equations (3 per frame) for the 6 independent entries of $L$ (since $L$ is symmetric).
+Write out these equations for all cameras, resulting in at most $$3F$$ equations (3 per frame) for the 6 independent entries of $$L$$ (since $$L$$ is symmetric).
 ### b) Solve for the Upgrade Matrix
 
-Arrange the constraints into a linear system $AL = b$ where:
+Arrange the constraints into a linear system $$AL = b$$ where:
 
-- $A$ is a matrix containing coefficients from the constraints
-- $L$ is a vector of the 6 independent entries of the symmetric matrix $L$
-- $b$ is a vector with entries 1, 1, 0, ... for each camera's constraints
+- $$A$$ is a matrix containing coefficients from the constraints
+- $$L$$ is a vector of the 6 independent entries of the symmetric matrix $$L$$
+- $$b$$ is a vector with entries 1, 1, 0, ... for each camera's constraints
 
-Solve this system using linear least-squares to find the $L$ that best satisfies all equations.
+Solve this system using linear least-squares to find the $$L$$ that best satisfies all equations.
 ### c). Compute the Upgrade Transformation
 
-Once you have $L \approx QQ^T$:
+Once you have $$L \approx QQ^T$$:
 
-1. Perform a **Cholesky decomposition** or eigen-decomposition to obtain $Q$
-    - You may need to create a positive definite approximation if $L$ has negative or zero eigenvalues due to noise
-    - One approach is to perform eigen-decomposition, set any negative eigenvalues to a small positive value, and reconstruct $L$
-2. Apply $Q$ to the affine reconstruction to get the Euclidean reconstruction:
-    - $R_{\text{euclid}} = R_{\text{affine}} Q$
-    - $S_{\text{euclid}} = Q^{-1} S_{\text{affine}}$
+1. Perform a **Cholesky decomposition** or eigen-decomposition to obtain $$Q$$
+    - You may need to create a positive definite approximation if $$L$$ has negative or zero eigenvalues due to noise
+    - One approach is to perform eigen-decomposition, set any negative eigenvalues to a small positive value, and reconstruct $$L$$
+2. Apply $$Q$$ to the affine reconstruction to get the Euclidean reconstruction:
+    - $$R_{\text{euclid}} = R_{\text{affine}} Q$$
+    - $$S_{\text{euclid}} = Q^{-1} S_{\text{affine}}$$
 
-Now $R_{\text{euclid}}$ should represent valid rotation matrices (scaled) and $S_{\text{euclid}}$ is the structure in Euclidean space (up to an overall scale factor).
+Now $$R_{\text{euclid}}$$ should represent valid rotation matrices (scaled) and $$S_{\text{euclid}}$$ is the structure in Euclidean space (up to an overall scale factor).
 
 ### d) Apply Absolute Scale Calibration
 
@@ -149,11 +149,11 @@ _(Image from "Shape and Motion from Image Streams under Orthography: A Factoriza
 
 1. **Identify reference points**: Select two or more feature points in your reconstruction where you know the actual physical distance between them. For example:
 2. **Compute the scale factor**:
-    - Let $d_{real}$ be the known real-world distance between your reference points
-    - Let $d_{recon}$ be the corresponding distance in your reconstructed model
-    - The scale factor is then $s = d_{real} / d_{recon}$
+    - Let $$d_{real}$$ be the known real-world distance between your reference points
+    - Let $$d_{recon}$$ be the corresponding distance in your reconstructed model
+    - The scale factor is then $$s = d_{real} / d_{recon}$$
 3. **Apply the scale**:
-    - Scale your Euclidean reconstruction: $S_{scaled} = s \times S_{euclid}$
+    - Scale your Euclidean reconstruction: $$S_{scaled} = s \times S_{euclid}$$
 4. **Verification**:
     - Measure other known distances in your scaled model to verify the accuracy
 
@@ -172,7 +172,7 @@ In your report, include:
 
 In practice, not all feature points are visible in all frames – points may **disappear** due to occlusion or tracking loss. The basic factorization method in part 1 & 2 requires a complete measurement matrix, so we want to extend it to handle missing entries.
 
-The approach you will implement is based on Tomasi and Kanade's paper _"Shape and Motion from Image Streams under Orthography: A Factorization Method"_ (IJCV 1992), which proposes an iterative strategy to handle occlusions. The idea is to start with initial estimates for the missing values, factorize the matrix, and then **gradually refine** the estimates by leveraging the low-rank structure of $W$.
+The approach you will implement is based on Tomasi and Kanade's paper _"Shape and Motion from Image Streams under Orthography: A Factorization Method"_ (IJCV 1992), which proposes an iterative strategy to handle occlusions. The idea is to start with initial estimates for the missing values, factorize the matrix, and then **gradually refine** the estimates by leveraging the low-rank structure of $$W$$.
 
 <div style="display: flex; justify-content: space-around; text-align: center;">
   <figure style="margin: 0;">
@@ -184,7 +184,7 @@ The approach you will implement is based on Tomasi and Kanade's paper _"Shape an
 </div>
 _(Left: Reconstructed sphere from a sequence of orthographic images. Right: Orthographic image sequence and Fill matrix visualization showing gradual accumulation of observations across frames (shaded entries are known image coordinates))_
 
-**Key concept:** Define a **fill matrix** (or mask matrix) of the same size as $W$, with entries:
+**Key concept:** Define a **fill matrix** (or mask matrix) of the same size as $$W$$, with entries:
 - 1 for observed measurements
 - 0 for missing ones
 The fill matrix lets us compute errors or updates **only on observed entries** while ignoring missing ones during the optimization process.
@@ -210,11 +210,11 @@ Implement matrix completion for Structure from Motion using the iterative factor
     - For each point with missing observations, fill in the gaps with reasonable estimates (e.g., the mean of that point's observed projections across frames)
     - Center the data by removing per-camera translation (row-wise centering)
 2. **Perform initial factorization** using SVD to obtain rank-3 approximation:
-    - Decompose the filled measurement matrix into motion matrix $M$ and shape matrix $S$
+    - Decompose the filled measurement matrix into motion matrix $$M$$ and shape matrix $$S$$
 3. **Iterative refinement**:
-    - Project the current estimates to reconstruct the measurement matrix: $W_{recon} = M \times S$
+    - Project the current estimates to reconstruct the measurement matrix: $$W_{recon} = M \times S$$
     - Replace the reconstructed values at known positions with the original measurements (using the fill matrix)
-    - Re-factorize using SVD to obtain updated $M$ and $S$
+    - Re-factorize using SVD to obtain updated $$M$$ and $$S$$
     - Compute reconstruction error over known entries
     - Repeat until convergence or maximum iterations reached
 4. **Metric upgrade**:
@@ -244,8 +244,8 @@ Implement matrix completion for Structure from Motion using the iterative factor
 </div>
 ### Submission Requirements
 Test your implementation on the provided datasets (**Cow**, **Stanford Bunny**, **Horse** sequences) do the following and include it in your report:
-1. Plot the recovered **3D point cloud** (structure $S$)
-2. Visualize the **camera positions/orientations** (rows of $R$) in 3D
+1. Plot the recovered **3D point cloud** (structure $$S$$)
+2. Visualize the **camera positions/orientations** (rows of $$R$$) in 3D
 3. Analyze the quality of reconstruction
 
 ### Bonus (5):
