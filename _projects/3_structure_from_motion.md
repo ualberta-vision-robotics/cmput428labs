@@ -8,25 +8,25 @@ importance: 1
 category: Structure from Motion
 related_publications: false
 ---
-
-<div style="display: flex; justify-content: space-around; text-align: center;">
-  <figure style="margin: 0;">
-    <a href="https://drive.google.com/path_to_cow">
-      <img src="assets/img/max.gif" alt="Cow" style="width:223px; height:auto;">
-    </a>
-  </figure>
-  <figure style="margin: 0;">
-    <a href="https://drive.google.com/path_to_horse">
-      <img src="assets/img/max_head.gif" alt="Horse" style="width:477px; height:auto;">
-    </a>
-  </figure>
+<div class="row justify-content-sm-center">
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/max.gif" title="3D mesh of head" class="img-fluid rounded" %}
+    </div>
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/max_head.gif" title="Tracked feature points and fill matrix visualization" class="img-fluid" %}
+    </div>
 </div>
-_(Left: 3D mesh of head reconstructed from a sequence of 60 orthographic images. Middle: Sequence of tracked feature points on ground truth mesh viewed from an orthographic camera. Right: Fill matrix visualization showing gradual accumulation of observations across frames (shaded entries are known image coordinates))_
+<div class="caption">
+Left: 3D mesh of head reconstructed from a sequence of 60 orthographic images. <br>
+Middle: Sequence of tracked feature points on ground truth mesh viewed from an orthographic camera. <br>
+Right: Fill matrix visualization showing gradual accumulation of observations across frames (shaded entries are known image coordinates) <br>
+</div>
+
 ## Overview
 
-In this assignment will implement an **affine factorization** method for structure from motion, you will then extend it to handle **missing data** (occlusions) via matrix completion, and perform a **metric upgrade** to recover the true Euclidean structure. You will test your implementation on provided datasets and on your own videos, and document your results with code, figures, and analysis.
+In this assignment you will implement an **affine factorization** method for structure from motion. You will then extend it to handle **missing data** (occlusions) via matrix completion, and perform a **metric upgrade** to recover the true Euclidean structure. You will test your implementation on provided datasets and on your own videos, and document your results with code, figures, and analysis.
 
-__Important: You can obtain 2 bonus marks for each section you finish and demo while present during the lab period we introduce the lab.__
+__Important: You can obtain 3 bonus marks for each section you finish and demo while present during the lab period we introduce the lab.__
 
 ---
 ## 1: Affine Factorization Method (30)
@@ -44,7 +44,8 @@ The key insight is that when tracking $$P$$ feature points across $$F$$ frames (
 </div>
 _(Left: The classic 101-frame Hotel sequence by Tomasi. Right: Example of a 3D reconstruction output. Data available at: [https://slazebni.cs.illinois.edu/fall22/assignment5.html](https://slazebni.cs.illinois.edu/fall22/assignment5.html))_
 
-### Task:
+**Task:**
+
 Implement the affine structure-from-motion algorithm following the procedure from Lecture 07 (slides 27–30) or the textbook:
 
 1. **Form the measurement matrix $$W$$** using tracked feature coordinates:
@@ -62,12 +63,13 @@ Implement the affine structure-from-motion algorithm following the procedure fro
     At this point, $$W \approx R S$$ gives an **affine reconstruction** of the cameras (in $$R$$) and 3D points (in $$S$$). Note that this reconstruction is not unique – any $$3 \times 3$$ invertible transform $$Q$$ gives an equivalent solution $$RQ$$ and $$Q^{-1}S$$.
 
 
-### Submission Requirements
-Using the provided Hotel data, and a short video recorded yourself do the following and include it in your report:
+**Deliverables**
+
+Using the provided Hotel data, and a short video recorded yourself do the following and include it in your report and code submission:
 1. Plot the recovered **3D point cloud** (structure $$S$$)
 2. Visualize the **camera positions/orientations** (rows of $$R$$) in 3D
 
-## Tools Provided & Resources
+**Tools and Provided Resources**
 - A video tracker with globally optimized feature tracking for high precision feature tracking.
 - A python script for generating orthographic video from a 3D model.
 - Textured 3D models: [http://kunzhou.net/tex-models.htm](http://kunzhou.net/tex-models.htm)
@@ -84,12 +86,12 @@ Using the provided Hotel data, and a short video recorded yourself do the follow
   </figure>
 </div>
 
-## Report Questions
+**Report Question 1**
 
 In your report, discuss what happens when applying this method to your own video data. Note that real cameras are projective, not orthographic, so your method might not perfectly reconstruct real video data. Analyze the differences and limitations you observe.
 
 ---
-## 2: Metric Upgrade (Euclidean Reconstruction) (30)
+## 2: Metric Upgrade; Euclidean Reconstruction (30)
 
 The factorization method you implemented in Part 1 yields a reconstruction that is **affine** – meaning it's determined only up to an arbitrary linear transformation in 3D space. To recover the true Euclidean structure (up to a scale factor), we need to enforce that camera motions correspond to **orthonormal rotations**. This refinement process is known as the **metric upgrade** or **affine to metric calibration**.
 
@@ -159,7 +161,8 @@ _(Image from "Shape and Motion from Image Streams under Orthography: A Factoriza
 
 Your final scaled reconstruction should now have proper real-world dimensions, allowing for 'accurate' measurements and integration with other 3D models or systems.
 
-### Submission Requirements
+**Deliverables**
+
 Using the provided Hotel data, do the following and include it in your report:
 1. Plot the recovered **3D point cloud** (structure $$S$$)
 2. Visualize the **camera positions/orientations** (rows of $$R$$) in 3D
@@ -168,7 +171,7 @@ Using the provided Hotel data, do the following and include it in your report:
 ### Bonus (5 points)
 - **Perform** the same **metric upgrade** on your own video (this can be the same video you captured for Question 1). Include the 3D metric reconstruction in your report, and evaluate **its accuracy**
 
-### Report Questions
+**Report Question 2**
 In your report, include:
 1. Visualization of the 3D reconstruction before and after the metric upgrade
 2. Analysis of how the metric upgrade affects the quality of the reconstruction. How good are your between reconstructed distances compaird to the known distances?
@@ -210,7 +213,9 @@ The fill matrix lets us compute errors or updates **only on observed entries** w
   </figure>
 </div>
 _(Examples of fill matrices for various 3D models (shaded entries are known image coordinates))_
-### Task:
+
+**Task:**
+
 Implement matrix completion for Structure from Motion using the iterative factorization approach:
 1. **Initialize missing entries** in the measurement matrix:
     - For each point with missing observations, fill in the gaps with reasonable estimates (e.g., the mean of that point's observed projections across frames)
@@ -249,7 +254,8 @@ Implement matrix completion for Structure from Motion using the iterative factor
   </figure>
 </div>
 
-### Submission Requirements
+**Deliverables**
+
 First test your implementation on the [sphere dataset](https://drive.google.com/drive/folders/1Rt-7p-AqWPCVtOgH-QbcfpDTCKoalzie?usp=drive_link) and then evaluate it on the following datasets (**Cow**, **Stanford Bunny**, **Horse** sequences) — note that the other data can be accessed through the above figure. Do the following and include it in your report:
 1. Plot the recovered **3D point cloud** (structure $$S$$)
 2. Visualize the **camera positions/orientations** (rows of $$R$$) in 3D
@@ -258,14 +264,32 @@ First test your implementation on the [sphere dataset](https://drive.google.com/
 ### Bonus (5):
 - Mesh your resulting 3D point cloud and include it in your report. Describe the meshing algorithm you implemented or library you utilized (e.g., Ball-Pivoting, Poisson Surface Reconstruction, Alpha Shapes). Explain why you selected this particular meshing approach and its suitability for the structure-from-motion point clouds. 
 
-## Tools Provided & Resources
+**Tools Provided & Resources**
 - [More 3D models](https://github.com/alecjacobson/common-3d-test-models/tree/master)
 - A python script for generating your own weight matrix from a mesh 
 - A python script for down sampling a mesh
 - All code: [Google Drive Folder](https://drive.google.com/drive/folders/1bumUAnZhOPYdLX_gwY3BE_Qovm_3tapZ?usp=sharing)
 
-## Report Questions
-1. Why can't we directly apply SVD to a matrix with missing entries?
-2. How does the low-rank assumption allow us to recover missing values?
-3. Explain the role of the fill matrix in computing reprojection error or updates.
-4. Compare the convergence behavior for different datasets. How many iterations were needed? Did the error decrease smoothly?
+**Report Question 3**
+
+a) Why can't we directly apply SVD to a matrix with missing entries?
+
+b) How does the low-rank assumption allow us to recover missing values?
+
+c) Explain the role of the fill matrix in computing reprojection error or updates.
+
+d) Compare the convergence behavior for different datasets. How many iterations were needed? Did the error decrease smoothly?
+
+---
+---
+
+## Submission Details
+
+- Include accompanying code used to complete each question. Ensure they are adequately commented.
+- Ensure all functions are and sections are clearly labeled in your report to match the tasks and deliverables outlined in the lab.
+- Organize files as follows:
+  - `code/` folder containing all scripts used in the assignment.
+  - `media/` folder for images, videos, and results.
+- Final submission format: a single zip file named `CompVisW25_lab3_lastname_firstname.zip` containing the above structure.
+- Your report for Lab 3 is to be submitted at a later date. The report contains all media, results, and answers as specified in the instructions above. Ensure your answers are concise and directly address the questions.
+- Total marks for this lab is __100__ for all students. Your lab assignment grade with bonus marks is capped at __130%__.
