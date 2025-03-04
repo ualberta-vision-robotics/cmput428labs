@@ -240,6 +240,7 @@ Implement matrix completion for Structure from Motion using the iterative factor
     <figcaption>Horse</figcaption>
   </figure>
 </div>
+
 ### Submission Requirements
 First test your implementation on the [sphere dataset](https://drive.google.com/drive/folders/1Rt-7p-AqWPCVtOgH-QbcfpDTCKoalzie?usp=drive_link) and then evaluate it on the following datasets (**Cow**, **Stanford Bunny**, **Horse** sequences) — note that the other data can be accessed through the above figure. Do the following and include it in your report:
 1. Plot the recovered **3D point cloud** (structure $$S$$)
