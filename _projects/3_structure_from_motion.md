@@ -142,7 +142,7 @@ Now $R_{\text{euclid}}$ should represent valid rotation matrices (scaled) and $S
 To obtain a model with real-world dimensions, you need to use known physical measurements between feature points. Use The figure below to calibrate the scale of your Hotel reconstruction from Part 1:
 <div style="display: flex; justify-content: space-around; text-align: center;">
   <figure style="margin: 0;">
-  <img src="measure.png" alt="Cow" style="width:600px; height:auto;">
+  <img src="assets/img/measure.png" alt="Cow" style="width:600px; height:auto;">
   </figure>
 </div>
 _(Image from "Shape and Motion from Image Streams under Orthography: A Factorization Method"_ (IJCV 1992))
@@ -195,11 +195,11 @@ The fill matrix lets us compute errors or updates **only on observed entries** w
     <figcaption>Cow</figcaption>
   </figure>
   <figure style="margin: 0;">
-      <img src="bunnymesh_fill_matrix.png" alt="Stanford Bunny" style="width:200px; height:auto;">
+      <img src="assets/img/bunnymesh_fill_matrix.png" alt="Stanford Bunny" style="width:200px; height:auto;">
     <figcaption>Stanford Bunny</figcaption>
   </figure>
   <figure style="margin: 0;">
-      <img src="horsemesh_fill_matrix.png" alt="Horse" style="width:200px; height:auto;">
+      <img src="assets/img/horsemesh_fill_matrix.png" alt="Horse" style="width:200px; height:auto;">
     <figcaption>Horse</figcaption>
   </figure>
 </div>
