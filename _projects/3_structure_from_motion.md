@@ -64,13 +64,11 @@ Using the provided data, and a short video recorded yourself do the following an
 1. Plot the recovered **3D point cloud** (structure $$S$$)
 2. Visualize the **camera positions/orientations** (rows of $$R$$) in 3D
 
-### Tools Provided & Resources
-\begin{itemize}
-    \item A video tracker with globally optimized feature tracking for high precision feature tracking.
-    \item A python script for generating orthographic video from a 3D model.
-    \item Textured 3D models: \href{http://kunzhou.net/tex-models.htm}{http://kunzhou.net/tex-models.htm}
-    \item All the code: \href{https://drive.google.com/drive/folders/1bumUAnZhOPYdLX_gwY3BE_Qovm_3tapZ?usp=sharing}{https://drive.google.com/drive/folders/1bumUAnZhOPYdLX_gwY3BE_Qovm_3tapZ?usp=sharing}
-\end{itemize}
+## Tools Provided & Resources
+- A video tracker with globally optimized feature tracking for high precision feature tracking.
+- A python script for generating orthographic video from a 3D model.
+- Textured 3D models: [http://kunzhou.net/tex-models.htm](http://kunzhou.net/tex-models.htm)
+- All code: [Google Drive Folder](https://drive.google.com/drive/folders/1bumUAnZhOPYdLX_gwY3BE_Qovm_3tapZ?usp=sharing)
 
 <div style="display: flex; justify-content: space-around; text-align: center;">
   <figure style="margin: 0;">
