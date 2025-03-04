@@ -195,15 +195,11 @@ The fill matrix lets us compute errors or updates **only on observed entries** w
     <figcaption>Cow</figcaption>
   </figure>
   <figure style="margin: 0;">
-
       <img src="bunnymesh_fill_matrix.png" alt="Stanford Bunny" style="width:200px; height:auto;">
-
     <figcaption>Stanford Bunny</figcaption>
   </figure>
   <figure style="margin: 0;">
-
       <img src="horsemesh_fill_matrix.png" alt="Horse" style="width:200px; height:auto;">
-
     <figcaption>Horse</figcaption>
   </figure>
 </div>
