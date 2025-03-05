@@ -103,10 +103,10 @@ In this question, you will implement the metric upgrade procedure to transform y
 
 <div class="row justify-content-sm-center">
     <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/bunny_front.gif" title="3D mesh of head" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid path="assets/img/bunny_front.gif" title="Tracked feature points of bunny model" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/bunny_front_2.png" title="Tracked feature points and fill matrix visualization" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid path="assets/img/bunny_front_2.png" title="Reconstruction of bunny model" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -266,7 +266,7 @@ Implement matrix completion for Structure from Motion using the iterative factor
 	- Enforce orthonormality constraints on the camera rows
 	- Apply the appropriate transformation to recover the motion and shape matrices
 
-### Bonus (10) - Meshing:
+### Bonus (10) - Meshing
 - Mesh your resulting 3D point cloud and include it in your code submission and report. Describe the meshing algorithm you implemented or library you utilized (e.g., Ball-Pivoting, Poisson Surface Reconstruction, Alpha Shapes). Explain why you selected this particular meshing approach and its suitability for the structure-from-motion point clouds. 
 
 **Deliverables:**
