@@ -10,16 +10,19 @@ related_publications: false
 ---
 <div class="row justify-content-sm-center">
     <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/max.gif" title="3D mesh of head" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid path="assets/img/max_head1.webp" title="3D mesh of head" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/max_head.gif" title="Tracked feature points and fill matrix visualization" class="img-fluid rounded z-depth-1" %}
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/max_head2.webp" title="Tracked feature points" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/max_head3.webp" title="Fill matrix visualization" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
 Left: 3D mesh of head reconstructed from a sequence of 60 orthographic images. <br>
 Middle: Sequence of tracked feature points on ground truth mesh viewed from an orthographic camera. <br>
-Right: Fill matrix visualization showing gradual accumulation of observations across frames (shaded entries are known image coordinates) <br>
+Right: Fill matrix visualization showing gradual accumulation of observations across frames (shaded entries are known image coordinates).
 </div>
 
 ## Overview
@@ -35,10 +38,10 @@ __Important: You can obtain 3 bonus marks for each section you finish and demo w
 The key insight is that when tracking $$P$$ feature points across $$F$$ frames (views), the resulting $$2F \times P$$ **measurement matrix** will have rank 3 for a rigid scene under orthographic projection, after proper normalization (centering). This matrix can be factored into motion and shape matrices via Singular Value Decomposition (SVD).
 
 <div class="row justify-content-sm-center">
-    <div class="col-sm-7 mt-3 mt-md-0">
+    <div class="col-sm-6 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/Hotel.gif" title="Tracked points in hotel dataset" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm-5 mt-3 mt-md-0">
+    <div class="col-sm-6 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/affine_example.png" title="reconstructed 3D points of hotel" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -99,10 +102,10 @@ The factorization method you implemented in Part 1 yields a reconstruction that 
 In this question, you will implement the metric upgrade procedure to transform your affine reconstruction into a Euclidean one. You will then use a known scale factor between feature points to properly scale your reconstructed model to real-world dimensions.
 
 <div class="row justify-content-sm-center">
-    <div class="col-sm-7 mt-3 mt-md-0">
+    <div class="col-sm-6 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/bunny_front.gif" title="3D mesh of head" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm-5 mt-3 mt-md-0">
+    <div class="col-sm-6 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/bunny_front_2.png" title="Tracked feature points and fill matrix visualization" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -156,7 +159,7 @@ To obtain a model with real-world dimensions, you need to use known physical mea
     </div>
 </div>
 <div class="caption">
-Image from "Shape and Motion from Image Streams under Orthography: A Factorization Method"_ (IJCV 1992)
+Image from "Shape and Motion from Image Streams under Orthography: A Factorization Method" (IJCV 1992).
 </div>
 
 1. **Identify reference points**: Select two or more feature points in your reconstruction where you know the actual physical distance between them. For example:
@@ -193,16 +196,19 @@ In practice, not all feature points are visible in all frames – points may **d
 The approach you will implement is based on Tomasi and Kanade's paper _"Shape and Motion from Image Streams under Orthography: A Factorization Method"_ (IJCV 1992), which proposes an iterative strategy to handle occlusions. The idea is to start with initial estimates for the missing values, factorize the matrix, and then **gradually refine** the estimates by leveraging the low-rank structure of $$W$$.
 
 <div class="row justify-content-sm-center">
-    <div class="col-sm-5 mt-3 mt-md-0">
+    <div class="col-sm-4 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/recon_sphere.png" title="reconstructed sphere" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm-7 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/sphere.gif" title="orthographic image sequence and fill matrix" class="img-fluid rounded z-depth-1" %}
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/sphere1.gif" title="orthographic image sequence" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/sphere2.gif" title="fill matrix" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
 Left: Reconstructed sphere from a sequence of orthographic images. <br>
-Right: Orthographic image sequence and Fill matrix visualization showing gradual accumulation of observations across frames (shaded entries are known image coordinates)
+Right: Orthographic image sequence and Fill matrix visualization showing gradual accumulation of observations across frames (shaded entries are known image coordinates).
 </div>
 
 **Key concept:** Define a **fill matrix** (or mask matrix) of the same size as $$W$$, with entries:
@@ -211,18 +217,18 @@ Right: Orthographic image sequence and Fill matrix visualization showing gradual
 The fill matrix lets us compute errors or updates **only on observed entries** while ignoring missing ones during the optimization process.
 
 <div class="row justify-content-sm-center">
-    <div class="col-sm-5 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/cow.png" title="cow fill matrix" class="img-fluid rounded z-depth-1" %}
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/cow.png" title="moo" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm-2 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/stanford-bunny.png" title="bunny fill matrix" class="img-fluid rounded z-depth-1" %}
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/horse.png" title="neigh" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm-5 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/horse.png" title="horse fill matrix" class="img-fluid rounded z-depth-1" %}
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/stanford_bunny.png" title="what sound do rabbits make?" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-Cow, Stanford bunny, and Horse models.
+Cow, Horse, and Stanford bunny models.
 </div>
 
 <div class="row justify-content-sm-center">
@@ -230,14 +236,14 @@ Cow, Stanford bunny, and Horse models.
         {% include figure.liquid path="assets/img/cowmesh_fill_matrix.png" title="cow fill matrix" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/bunnymesh_fill_matrix.png" title="bunny fill matrix" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid path="assets/img/horsemesh_fill_matrix.png" title="horse fill matrix" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/horsemesh_fill_matrix.png" title="horse fill matrix" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid path="assets/img/bunnymesh_fill_matrix.png" title="bunny fill matrix" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-Examples of fill matrices for various 3D models (shaded entries are known image coordinates)
+Examples of fill matrices for the above models (shaded entries are known image coordinates).
 </div>
 
 
@@ -264,7 +270,7 @@ Implement matrix completion for Structure from Motion using the iterative factor
 
 **Deliverables:**
 
-First test your implementation on the [sphere dataset](https://drive.google.com/drive/folders/1Rt-7p-AqWPCVtOgH-QbcfpDTCKoalzie?usp=drive_link) and then evaluate it on the [Cow]({{"/assets/labs/cow.obj" | relative_url}}){:target="_blank"}, [Stanford Bunny]({{"/assets/labs/bunny.obj" | relative_url}}){:target="_blank"}, and [Horse]({{"/assets/labs/horse.obj" | relative_url}}){:target="_blank"} datasets. 
+First test your implementation on the [sphere dataset](https://drive.google.com/drive/folders/1Rt-7p-AqWPCVtOgH-QbcfpDTCKoalzie?usp=drive_link) and then evaluate it on the [Cow]({{"/assets/labs/cow.obj" | relative_url}}){:target="_blank"}, [Horse]({{"/assets/labs/horse.obj" | relative_url}}){:target="_blank"}, and [Stanford Bunny]({{"/assets/labs/bunny.obj" | relative_url}}){:target="_blank"} datasets. 
 
 Repeat the following for each dataset and include each figure in your code submission and report:
 1. Plot the recovered **3D point cloud** (obtained from $$S$$)
