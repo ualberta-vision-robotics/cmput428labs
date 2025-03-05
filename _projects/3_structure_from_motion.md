@@ -10,10 +10,10 @@ related_publications: false
 ---
 <div class="row justify-content-sm-center">
     <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/max.gif" title="3D mesh of head" class="img-fluid rounded" %}
+        {% include figure.liquid path="assets/img/max.gif" title="3D mesh of head" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/max_head.gif" title="Tracked feature points and fill matrix visualization" class="img-fluid" %}
+        {% include figure.liquid path="assets/img/max_head.gif" title="Tracked feature points and fill matrix visualization" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -34,19 +34,24 @@ __Important: You can obtain 3 bonus marks for each section you finish and demo w
 
 The key insight is that when tracking $$P$$ feature points across $$F$$ frames (views), the resulting $$2F \times P$$ **measurement matrix** will have rank 3 for a rigid scene under orthographic projection, after proper normalization (centering). This matrix can be factored into motion and shape matrices via Singular Value Decomposition (SVD).
 
-<div style="display: flex; justify-content: space-around; text-align: center;">
-  <figure style="margin: 0;">
-      <img src="assets/img/Hotel.gif" alt="Cow" style="width:400px; height:auto;">
-  </figure>
-  <figure style="margin: 0;">
-      <img src="assets/img/affine_example.png" alt="Horse" style="width:307px; height:auto;">
-  </figure>
+<div class="row justify-content-sm-center">
+    <div class="col-sm-7 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/Hotel.gif" title="Tracked points in hotel dataset" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm-5 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/affine_example.png" title="reconstructed 3D points of hotel" class="img-fluid rounded z-depth-1" %}
+    </div>
 </div>
-_(Left: The classic 101-frame Hotel sequence by Tomasi. Right: Example of a 3D reconstruction output. Data available at: [https://slazebni.cs.illinois.edu/fall22/assignment5.html](https://slazebni.cs.illinois.edu/fall22/assignment5.html))_
+<div class="caption">
+Left: The classic 101-frame Hotel sequence by Tomasi. <br>
+Right: Example of a 3D reconstruction output.
+</div>
 
 **Task:**
 
-Implement the affine structure-from-motion algorithm following the procedure from Lecture 07 (slides 27–30) or the textbook:
+Implement the affine structure-from-motion algorithm following the procedure from [Lecture 07](https://ugweb.cs.ualberta.ca/~vis/courses/CompVis/lectures24/lec07modeling18EmbMedia.pdf) (slides 27–30) or the textbook on the following two datasets:
+- The [hotel dataset found here](https://slazebni.cs.illinois.edu/fall22/assignment5.html). In the zip, the measurement matrix can be found in the .txt.
+- A short video you record yourself. You may use [feature_tracker.py]({{"/assets/labs/feature_tracker.py" | relative_url}}){:target="_blank"} which finds good feature points, tracks them, and performs a global optimization to refine the tracking if you wish.
 
 1. **Form the measurement matrix $$W$$** using tracked feature coordinates:
     - Normalize the data by subtracting the mean from each row (i.e., each image's $$x$$ and $$y$$ coordinates)
@@ -63,30 +68,26 @@ Implement the affine structure-from-motion algorithm following the procedure fro
     At this point, $$W \approx R S$$ gives an **affine reconstruction** of the cameras (in $$R$$) and 3D points (in $$S$$). Note that this reconstruction is not unique – any $$3 \times 3$$ invertible transform $$Q$$ gives an equivalent solution $$RQ$$ and $$Q^{-1}S$$.
 
 
-**Deliverables**
+**Deliverables:**
 
-Using the provided Hotel data, and a short video recorded yourself do the following and include it in your report and code submission:
-1. Plot the recovered **3D point cloud** (structure $$S$$)
-2. Visualize the **camera positions/orientations** (rows of $$R$$) in 3D
+For each dataset (hotel and your own), save the following figures to include in your code submission and display them in your report:
+1. Plot the recovered **3D point cloud** (obtained from $$S$$)
+2. Visualize the **camera positions** (obtained from $$R$$) in 3D
 
-**Tools and Provided Resources**
-- A video tracker with globally optimized feature tracking for high precision feature tracking.
-- A python script for generating orthographic video from a 3D model.
-- Textured 3D models: [http://kunzhou.net/tex-models.htm](http://kunzhou.net/tex-models.htm)
-- All code: [Google Drive Folder](https://drive.google.com/drive/folders/1bumUAnZhOPYdLX_gwY3BE_Qovm_3tapZ?usp=sharing)
+**Extra Tools and Resources:**
+- [capture_motion.py]({{"/assets/labs/capture_motion.py" | relative_url}}){:target="_blank"} is a python script that generates video data from a textured 3D mesh. Terminal inputs allow for control recording and the view of the model.
+- [Textured 3D models can be found here](http://kunzhou.net/tex-models.htm)
 
-<div style="display: flex; justify-content: space-around; text-align: center;">
-  <figure style="margin: 0;">
-      <img src="assets/img/tiger.png" alt="Cow" style="width:400px; height:auto;">
-  </figure>
+<div class="row justify-content-sm-center">
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/tiger_controls.png" title="obtained from capture_motion.py" class="img-fluid rounded z-depth-1" %}
+    </div>
 </div>
-<div style="display: flex; justify-content: space-around; text-align: center;">
-  <figure style="margin: 0;">
-      <img src="assets/img/controls.png" alt="Horse" style="width:400px; height:auto;">
-  </figure>
+<div class="caption">
+capture_motion.py can be used to record videos of textured 3D meshes.
 </div>
 
-**Report Question 1**
+**Report Question 1:**
 
 In your report, discuss what happens when applying this method to your own video data. Note that real cameras are projective, not orthographic, so your method might not perfectly reconstruct real video data. Analyze the differences and limitations you observe.
 
@@ -97,24 +98,28 @@ The factorization method you implemented in Part 1 yields a reconstruction that 
 
 In this question, you will implement the metric upgrade procedure to transform your affine reconstruction into a Euclidean one. You will then use a known scale factor between feature points to properly scale your reconstructed model to real-world dimensions.
 
-<div style="display: flex; justify-content: space-around; text-align: center;">
-  <figure style="margin: 0;">
-  <img src="assets/img/bunny_front.gif" alt="Cow" style="width:357px; height:auto;">
-  </figure>
-<figure style="margin: 0;">
-  <img src="assets/img/bunny_front_2.png" alt="Horse" style="width:300px; height:auto;">
-  </figure>
+<div class="row justify-content-sm-center">
+    <div class="col-sm-7 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/bunny_front.gif" title="3D mesh of head" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm-5 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/bunny_front_2.png" title="Tracked feature points and fill matrix visualization" class="img-fluid rounded z-depth-1" %}
+    </div>
 </div>
-_(Left: Orthographic image sequence with tracked features Right: Resulting Euclidean reconstruction)_
+<div class="caption">
+Left: Orthographic image sequence with tracked features. <br>
+Right: Resulting Euclidean reconstruction.
+</div>
+
 ### a) Derive the Orthonormality Constraints
 
 Suppose the $$i$$-th camera has affine motion represented by the two 3D row vectors $$r_{i1}$$ and $$r_{i2}$$ (from the $$R$$ matrix). For a real rotation, we require:
 $$ \begin{align} r_{i1} \cdot r_{i1}^T &= 1 \\ r_{i2} \cdot r_{i2}^T &= 1 \\ r_{i1} \cdot r_{i2}^T &= 0 \end{align} $$
 These constraints can be written in terms of the unknown metric upgrade matrix $$L = QQ^T$$ (a symmetric $$3\times3$$ matrix):
 
-- For the first constraint: $$r_{i1} L r_{i1}^T = 1$$
-- For the second constraint: $$r_{i2} L r_{i2}^T = 1$$
-- For the third constraint: $$r_{i1} L r_{i2}^T = 0$$
+- For the first constraint:   $$r_{i1} L r_{i1}^T = 1$$
+- For the second constraint:  $$r_{i2} L r_{i2}^T = 1$$
+- For the third constraint:   $$r_{i1} L r_{i2}^T = 0$$
 
 Write out these equations for all cameras, resulting in at most $$3F$$ equations (3 per frame) for the 6 independent entries of $$L$$ (since $$L$$ is symmetric).
 ### b) Solve for the Upgrade Matrix
@@ -134,20 +139,25 @@ Once you have $$L \approx QQ^T$$:
     - You may need to create a positive definite approximation if $$L$$ has negative or zero eigenvalues due to noise
     - One approach is to perform eigen-decomposition, set any negative eigenvalues to a small positive value, and reconstruct $$L$$
 2. Apply $$Q$$ to the affine reconstruction to get the Euclidean reconstruction:
-    - $$R_{\text{euclid}} = R_{\text{affine}} Q$$
-    - $$S_{\text{euclid}} = Q^{-1} S_{\text{affine}}$$
+
+$$R_{\text{euclid}} = R_{\text{affine}} Q$$
+
+$$S_{\text{euclid}} = Q^{-1} S_{\text{affine}}$$
 
 Now $$R_{\text{euclid}}$$ should represent valid rotation matrices (scaled) and $$S_{\text{euclid}}$$ is the structure in Euclidean space (up to an overall scale factor).
 
 ### d) Apply Absolute Scale Calibration
 
 To obtain a model with real-world dimensions, you need to use known physical measurements between feature points. Use The figure below to calibrate the scale of your Hotel reconstruction from Part 1:
-<div style="display: flex; justify-content: space-around; text-align: center;">
-  <figure style="margin: 0;">
-  <img src="assets/img/measure.png" alt="Cow" style="width:600px; height:auto;">
-  </figure>
+
+<div class="row justify-content-sm-center">
+    <div class="col-sm-10 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/measure.png" title="obtained from capture_motion.py" class="img-fluid rounded z-depth-1" %}
+    </div>
 </div>
-_(Image from "Shape and Motion from Image Streams under Orthography: A Factorization Method"_ (IJCV 1992))
+<div class="caption">
+Image from "Shape and Motion from Image Streams under Orthography: A Factorization Method"_ (IJCV 1992)
+</div>
 
 1. **Identify reference points**: Select two or more feature points in your reconstruction where you know the actual physical distance between them. For example:
 2. **Compute the scale factor**:
@@ -161,58 +171,75 @@ _(Image from "Shape and Motion from Image Streams under Orthography: A Factoriza
 
 Your final scaled reconstruction should now have proper real-world dimensions, allowing for 'accurate' measurements and integration with other 3D models or systems.
 
-**Deliverables**
+### Bonus (10) - Metric upgrade on your own data
+- **Perform** the same **metric upgrade** on your own video (this can be the same video you captured for Question 1). Include the 3D metric reconstruction in your code submission and report, and evaluate **its accuracy**
 
-Using the provided Hotel data, do the following and include it in your report:
-1. Plot the recovered **3D point cloud** (structure $$S$$)
-2. Visualize the **camera positions/orientations** (rows of $$R$$) in 3D
+**Deliverables:**
+
+Using the provided Hotel data, save the following figures to include in your code submission and display them in your report:
+1. Plot the recovered **3D point cloud** (obtained from $$S$$)
+2. Visualize the **camera positions** (obtained from $$R$$) in 3D
 3. Evaluate its accuracy
 
-### Bonus (5 points)
-- **Perform** the same **metric upgrade** on your own video (this can be the same video you captured for Question 1). Include the 3D metric reconstruction in your report, and evaluate **its accuracy**
+**Report Question 2:**
 
-**Report Question 2**
-In your report, include:
-1. Visualization of the 3D reconstruction before and after the metric upgrade
-2. Analysis of how the metric upgrade affects the quality of the reconstruction. How good are your between reconstructed distances compaird to the known distances?
+Visualize the 3D reconstruction before and after the metric upgrade. Analyze, using your own methods, how the metric upgrade affects the quality of the reconstruction. How good are your between reconstructed distances compaird to the known distances?
 
 ---
-## 3: Handling Missing Data (Matrix Completion) (40)
+## 3: Handling Missing Data; Matrix Completion (40)
 
 In practice, not all feature points are visible in all frames – points may **disappear** due to occlusion or tracking loss. The basic factorization method in part 1 & 2 requires a complete measurement matrix, so we want to extend it to handle missing entries.
 
 The approach you will implement is based on Tomasi and Kanade's paper _"Shape and Motion from Image Streams under Orthography: A Factorization Method"_ (IJCV 1992), which proposes an iterative strategy to handle occlusions. The idea is to start with initial estimates for the missing values, factorize the matrix, and then **gradually refine** the estimates by leveraging the low-rank structure of $$W$$.
 
-<div style="display: flex; justify-content: space-around; text-align: center;">
-  <figure style="margin: 0;">
-  <img src="assets/img/recon_sphere.png" alt="Cow" style="width:285px; height:auto;">
-  </figure>
-  <figure style="margin: 0;">
-  <img src="assets/img/sphere.gif" alt="Horse" style="width:430px; height:auto;">
-  </figure>
+<div class="row justify-content-sm-center">
+    <div class="col-sm-5 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/recon_sphere.png" title="reconstructed sphere" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm-7 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/sphere.gif" title="orthographic image sequence and fill matrix" class="img-fluid rounded z-depth-1" %}
+    </div>
 </div>
-_(Left: Reconstructed sphere from a sequence of orthographic images. Right: Orthographic image sequence and Fill matrix visualization showing gradual accumulation of observations across frames (shaded entries are known image coordinates))_
+<div class="caption">
+Left: Reconstructed sphere from a sequence of orthographic images. <br>
+Right: Orthographic image sequence and Fill matrix visualization showing gradual accumulation of observations across frames (shaded entries are known image coordinates)
+</div>
 
 **Key concept:** Define a **fill matrix** (or mask matrix) of the same size as $$W$$, with entries:
 - 1 for observed measurements
 - 0 for missing ones
 The fill matrix lets us compute errors or updates **only on observed entries** while ignoring missing ones during the optimization process.
 
-<div style="display: flex; justify-content: space-around; text-align: center;">
-  <figure style="margin: 0;">
-      <img src="assets/img/cowmesh_fill_matrix.png" alt="Cow" style="width:200px; height:auto;">
-    <figcaption>Cow</figcaption>
-  </figure>
-  <figure style="margin: 0;">
-      <img src="assets/img/bunnymesh_fill_matrix.png" alt="Stanford Bunny" style="width:200px; height:auto;">
-    <figcaption>Stanford Bunny</figcaption>
-  </figure>
-  <figure style="margin: 0;">
-      <img src="assets/img/horsemesh_fill_matrix.png" alt="Horse" style="width:200px; height:auto;">
-    <figcaption>Horse</figcaption>
-  </figure>
+<div class="row justify-content-sm-center">
+    <div class="col-sm-5 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/cow.png" title="cow fill matrix" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm-2 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/stanford-bunny.png" title="bunny fill matrix" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm-5 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/horse.png" title="horse fill matrix" class="img-fluid rounded z-depth-1" %}
+    </div>
 </div>
-_(Examples of fill matrices for various 3D models (shaded entries are known image coordinates))_
+<div class="caption">
+Cow, Stanford bunny, and Horse models.
+</div>
+
+<div class="row justify-content-sm-center">
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/cowmesh_fill_matrix.png" title="cow fill matrix" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/bunnymesh_fill_matrix.png" title="bunny fill matrix" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/horsemesh_fill_matrix.png" title="horse fill matrix" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+Examples of fill matrices for various 3D models (shaded entries are known image coordinates)
+</div>
+
 
 **Task:**
 
@@ -232,54 +259,29 @@ Implement matrix completion for Structure from Motion using the iterative factor
 	- Enforce orthonormality constraints on the camera rows
 	- Apply the appropriate transformation to recover the motion and shape matrices
 
+### Bonus (10) - Meshing:
+- Mesh your resulting 3D point cloud and include it in your code submission and report. Describe the meshing algorithm you implemented or library you utilized (e.g., Ball-Pivoting, Poisson Surface Reconstruction, Alpha Shapes). Explain why you selected this particular meshing approach and its suitability for the structure-from-motion point clouds. 
 
-<div style="display: flex; justify-content: space-around; text-align: center;">
-  <figure style="margin: 0;">
-    <a href="https://drive.google.com/drive/folders/1lZjl-x2dLMpfeujZsG8HYRtb0whtfA6F?usp=sharing">
-      <img src="assets/img/cow.png" alt="Cow" style="width:200px; height:auto;">
-    </a>
-    <figcaption>Cow</figcaption>
-  </figure>
-  <figure style="margin: 0;">
-    <a href="https://drive.google.com/drive/folders/1OnRPGfHeadjpeMXvLq9GEjTr56ANE28r?usp=sharing">
-      <img src="assets/img/stanford-bunny.png" alt="Stanford Bunny" style="width:130px; height:auto;">
-    </a>
-    <figcaption>Stanford Bunny</figcaption>
-  </figure>
-  <figure style="margin: 0;">
-    <a href="https://drive.google.com/drive/folders/19_s9aCQqcTsHty9cytsjz4EljkvuOuUg?usp=sharing">
-      <img src="assets/img/horse.png" alt="Horse" style="width:200px; height:auto;">
-    </a>
-    <figcaption>Horse</figcaption>
-  </figure>
-</div>
+**Deliverables:**
 
-**Deliverables**
+First test your implementation on the [sphere dataset](https://drive.google.com/drive/folders/1Rt-7p-AqWPCVtOgH-QbcfpDTCKoalzie?usp=drive_link) and then evaluate it on the [Cow]({{"/assets/labs/cow.obj" | relative_url}}){:target="_blank"}, [Stanford Bunny]({{"/assets/labs/bunny.obj" | relative_url}}){:target="_blank"}, and [Horse]({{"/assets/labs/horse.obj" | relative_url}}){:target="_blank"} datasets. 
 
-First test your implementation on the [sphere dataset](https://drive.google.com/drive/folders/1Rt-7p-AqWPCVtOgH-QbcfpDTCKoalzie?usp=drive_link) and then evaluate it on the following datasets (**Cow**, **Stanford Bunny**, **Horse** sequences) — note that the other data can be accessed through the above figure. Do the following and include it in your report:
-1. Plot the recovered **3D point cloud** (structure $$S$$)
-2. Visualize the **camera positions/orientations** (rows of $$R$$) in 3D
-3. Analyze the quality of reconstruction
+Repeat the following for each dataset and include each figure in your code submission and report:
+1. Plot the recovered **3D point cloud** (obtained from $$S$$)
+2. Visualize the **camera positions/orientations** (obtained from $$R$$) in 3D
 
-### Bonus (5):
-- Mesh your resulting 3D point cloud and include it in your report. Describe the meshing algorithm you implemented or library you utilized (e.g., Ball-Pivoting, Poisson Surface Reconstruction, Alpha Shapes). Explain why you selected this particular meshing approach and its suitability for the structure-from-motion point clouds. 
+**Extra Tools and Resources:**
+- More 3D models [can be obtained here](https://github.com/alecjacobson/common-3d-test-models/tree/master).
+- You may use [mesh_experiment.py]({{"/assets/labs/mesh_experiment.py" | relative_url}}){:target="_blank"} to load a mesh and track points from an orthographic camera which will then output a measurement matrix and a fill matrix.
 
-**Tools Provided & Resources**
-- [More 3D models](https://github.com/alecjacobson/common-3d-test-models/tree/master)
-- A python script for generating your own weight matrix from a mesh 
-- A python script for down sampling a mesh
-- All code: [Google Drive Folder](https://drive.google.com/drive/folders/1bumUAnZhOPYdLX_gwY3BE_Qovm_3tapZ?usp=sharing)
-
-**Report Question 3**
-
-a) Why can't we directly apply SVD to a matrix with missing entries?
-
-b) How does the low-rank assumption allow us to recover missing values?
-
-c) Explain the role of the fill matrix in computing reprojection error or updates.
-
-d) Compare the convergence behavior for different datasets. How many iterations were needed? Did the error decrease smoothly?
-
+**Report Question 3:**
+<ol type="a">
+<li>Analyze the quality of each of the reconstructions you achieved.</li>
+<li>Why can't we directly apply SVD to a matrix with missing entries?</li>
+<li>How does the low-rank assumption allow us to recover missing values?</li>
+<li>Explain the role of the fill matrix in computing reprojection error or updates.</li>
+<li>Compare the convergence behavior for different datasets. How many iterations were needed? Did the error decrease smoothly?</li>
+</ol>
 ---
 ---
 
