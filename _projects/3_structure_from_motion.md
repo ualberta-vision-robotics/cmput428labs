@@ -208,7 +208,8 @@ The approach you will implement is based on Tomasi and Kanade's paper _"Shape an
 </div>
 <div class="caption">
 Left: Reconstructed sphere from a sequence of orthographic images. <br>
-Right: Orthographic image sequence and Fill matrix visualization showing gradual accumulation of observations across frames (shaded entries are known image coordinates).
+Middle: Orthographic image sequence.<br>
+Right: Fill matrix visualization showing gradual accumulation of observations across frames (shaded entries are known image coordinates).
 </div>
 
 **Key concept:** Define a **fill matrix** (or mask matrix) of the same size as $$W$$, with entries:
