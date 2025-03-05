@@ -38,10 +38,10 @@ __Important: You can obtain 3 bonus marks for each section you finish and demo w
 The key insight is that when tracking $$P$$ feature points across $$F$$ frames (views), the resulting $$2F \times P$$ **measurement matrix** will have rank 3 for a rigid scene under orthographic projection, after proper normalization (centering). This matrix can be factored into motion and shape matrices via Singular Value Decomposition (SVD).
 
 <div class="row justify-content-sm-center">
-    <div class="col-sm-6 mt-3 mt-md-0">
+    <div class="col-sm-4 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/Hotel.gif" title="Tracked points in hotel dataset" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm-6 mt-3 mt-md-0">
+    <div class="col-sm-4 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/affine_example.png" title="reconstructed 3D points of hotel" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -82,7 +82,7 @@ For each dataset (hotel and your own), save the following figures to include in 
 - [Textured 3D models can be found here](http://kunzhou.net/tex-models.htm)
 
 <div class="row justify-content-sm-center">
-    <div class="col-sm-4 mt-3 mt-md-0">
+    <div class="col-sm-5 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/tiger_controls.png" title="obtained from capture_motion.py" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -102,10 +102,10 @@ The factorization method you implemented in Part 1 yields a reconstruction that 
 In this question, you will implement the metric upgrade procedure to transform your affine reconstruction into a Euclidean one. You will then use a known scale factor between feature points to properly scale your reconstructed model to real-world dimensions.
 
 <div class="row justify-content-sm-center">
-    <div class="col-sm-6 mt-3 mt-md-0">
+    <div class="col-sm-4 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/bunny_front.gif" title="3D mesh of head" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm-6 mt-3 mt-md-0">
+    <div class="col-sm-4 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/bunny_front_2.png" title="Tracked feature points and fill matrix visualization" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -154,7 +154,7 @@ Now $$R_{\text{euclid}}$$ should represent valid rotation matrices (scaled) and 
 To obtain a model with real-world dimensions, you need to use known physical measurements between feature points. Use The figure below to calibrate the scale of your Hotel reconstruction from Part 1:
 
 <div class="row justify-content-sm-center">
-    <div class="col-sm-10 mt-3 mt-md-0">
+    <div class="col-sm-12 mt-3 mt-md-0">
         {% include figure.liquid path="assets/img/measure.png" title="obtained from capture_motion.py" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
