@@ -75,7 +75,6 @@ Implement the affine structure-from-motion algorithm following the procedure fro
 
 For each dataset (hotel and your own), save the following figures to include in your code submission and display them in your report:
 1. Plot the recovered **3D point cloud** (obtained from $$S$$)
-2. Visualize the **camera positions** (obtained from $$R$$) in 3D
 
 **Extra Tools and Resources:**
 - [capture_motion.py]({{"/assets/labs/capture_motion.py" | relative_url}}){:target="_blank"} is a python script that generates video data from a textured 3D mesh. Terminal inputs allow for control recording and the view of the model.
@@ -271,7 +270,7 @@ Implement matrix completion for Structure from Motion using the iterative factor
 
 **Deliverables:**
 
-First test your implementation on the [sphere dataset](https://drive.google.com/drive/folders/1Rt-7p-AqWPCVtOgH-QbcfpDTCKoalzie?usp=drive_link) and then evaluate it on the [Cow]({{"/assets/labs/cow.obj" | relative_url}}){:target="_blank"}, [Horse]({{"/assets/labs/horse.obj" | relative_url}}){:target="_blank"}, and [Stanford Bunny]({{"/assets/labs/bunny.obj" | relative_url}}){:target="_blank"} datasets. 
+First test your implementation on the [sphere dataset](https://drive.google.com/drive/folders/1Rt-7p-AqWPCVtOgH-QbcfpDTCKoalzie?usp=drive_link) and then evaluate it on the [Cow](https://drive.google.com/drive/folders/1lZjl-x2dLMpfeujZsG8HYRtb0whtfA6F?usp=drive_link), [Horse](https://drive.google.com/drive/folders/19_s9aCQqcTsHty9cytsjz4EljkvuOuUg?usp=drive_link), and [Stanford Bunny](https://drive.google.com/drive/folders/1OnRPGfHeadjpeMXvLq9GEjTr56ANE28r?usp=drive_link) datasets. 
 
 Repeat the following for each dataset and include each figure in your code submission and report:
 1. Plot the recovered **3D point cloud** (obtained from $$S$$)
