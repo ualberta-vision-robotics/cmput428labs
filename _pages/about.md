@@ -15,12 +15,12 @@ profile:
     <p>mj7@ualberta.ca</p>
     <br>
     <br>
-    <h5>Allie Luo</h5>
-    <p>luo3@ualberta.ca</p>
+    <h5>Riley Zilka</h5>
+    <p>rzilka@ualberta.ca</p>
     <br>
     <br>
-    <h5>Justin Valentine</h5>
-    <p>jvalenti@ualberta.ca</p>
+    <h5>Cole Dewis</h5>
+    <p>dewis@ualberta.ca</p>
     <br>
     <br>
 
@@ -38,21 +38,25 @@ The labs are separated into 3 topics:
     <li>
     <a href= '{{ '/opticalflow' | relative_url }}'>Lab 1.1 - Optical Flow</a>
     </li>
-    <a href= '{{ '/tracking' | relative_url }}'>Lab 1.2 - Tracking</a>
+    <!-- <a href= '{{ '/tracking' | relative_url }}'>Lab 1.2 - Tracking</a> -->
+    <a href= '{{ '/coming_soon' | relative_url }}'>Lab 1.2 - Tracking</a>
   </ul>
   <li>Projective Geometry and Stereo</li>
   <ul>
     <li>
-    <a href= '{{ '/2dgeometry' | relative_url }}'>Lab 2.1 - 2D Projective Geometry and Homography Estimation</a>
+    <!-- <a href= '{{ '/2dgeometry' | relative_url }}'>Lab 2.1 - 2D Projective Geometry and Homography Estimation</a> -->
+    <a href= '{{ '/coming_soon' | relative_url }}'>Lab 2.1 - 2D Projective Geometry and Homography Estimation</a>
     </li>
     <li>
-    <a href= '{{ '/3dgeometry' | relative_url }}'>Lab 2.2 - 3D Projective Geometry and Stereo Reconstruction</a>
+    <!-- <a href= '{{ '/3dgeometry' | relative_url }}'>Lab 2.2 - 3D Projective Geometry and Stereo Reconstruction</a> -->
+    <a href= '{{ '/coming_soon' | relative_url }}'>Lab 2.2 - 3D Projective Geometry and Stereo Reconstruction</a>
     </li>
   </ul>
   <li>Structure from Motion</li>
   <ul>
     <li>
-     <a href= '{{ '/structurefrommotion' | relative_url }}'>Lab 3 - Structure from Motion</a>
+     <!-- <a href= '{{ '/structurefrommotion' | relative_url }}'>Lab 3 - Structure from Motion</a> -->
+     <a href= '{{ '/coming_soon' | relative_url }}'>Lab 3 - Structure from Motion</a>
      </li>
   </ul>
 </ol>

@@ -18,12 +18,12 @@ profile:
     <p>mj7@ualberta.ca</p>
     <br>
     <br>
-    <h5>Allie Luo</h5>
-    <p>luo3@ualberta.ca</p>
+    <h5>Riley Zilka</h5>
+    <p>rzilka@ualberta.ca</p>
     <br>
     <br>
-    <h5>Justin Valentine</h5>
-    <p>jvalenti@ualberta.ca</p>
+    <h5>Cole Dewis</h5>
+    <p>dewis@ualberta.ca</p>
     <br>
     <br>
 ---
@@ -44,4 +44,4 @@ profile:
 
 - Sharing video and images are allowed but submissions are expected to be your own work only.
 
-
+- AI use must be cited at the top of any files it is used for with a description of what it was used for.
