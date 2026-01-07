@@ -2,7 +2,7 @@
 layout: page
 title: Lab 3 - Structure from Motion
 description:
-permalink: /structurefrommotion
+permalink: /structurefrommotion_HIDDEN # changed to show version w/o qns for now
 img: 
 importance: 1
 category: Structure from Motion
