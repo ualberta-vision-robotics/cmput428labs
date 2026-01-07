@@ -30,7 +30,7 @@ profile:
 
 - Lab sessions will be used to introduce lab assignments, help for lab assignments, and assignment demos.
 
-- Discussion and questions are encouraged to go to the eclass forum.
+- Discussion and questions are encouraged to go to the canvas forum.
 
 <!-- - Late submissions will be accepted at a 20% penalty per day. -->
 
@@ -45,3 +45,5 @@ profile:
 - Sharing video and images are allowed but submissions are expected to be your own work only.
 
 - AI use must be cited at the top of any files it is used for with a description of what it was used for.
+
+- To obtain bonus marks from bonus questions, you must complete all the required lab questions.

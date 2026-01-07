@@ -61,5 +61,7 @@ Reports are to include answers to the written response questions in each lab ass
 <strong><font color ='DarkViolet'>For grad students, we will include additional items to address in violet font.</font></strong>
 <br>
 See the <a href='https://ugweb.cs.ualberta.ca/~vis/courses/CompVis/calendar.htm' target="_self">calendar</a> for submission deadlines. <!--We also encourage you to join the course <a href='https://discord.gg/jjkNU8SGwP'>discord</a> for discussion and assistance.-->
+
+__Slides from the introductory lab are <a href='https://drive.google.com/file/d/1ddIPxph0vZBxN_4-r5vDVBDZ13KsTtzL/view?usp=drive_link'>available at this link.</a> You will need to use your ualberta email for access.__
 <br>
 <br>
