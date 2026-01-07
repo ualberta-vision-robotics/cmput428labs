@@ -65,12 +65,27 @@ ninja.data = [{
           title: 'Lab 2.1 - 2D Projective Geometry and Homography Estimation',
           description: "",
           section: "Projects",handler: () => {
+              window.location.href = "/cmput428labs/2dgeometry_HIDDEN";
+            },},{id: "projects-lab-2-1-2d-projective-geometry-and-homography-estimation",
+          title: 'Lab 2.1 - 2D Projective Geometry and Homography Estimation',
+          description: "",
+          section: "Projects",handler: () => {
               window.location.href = "/cmput428labs/2dgeometry";
             },},{id: "projects-lab-2-2-3d-projective-geometry-and-stereo-reconstruction",
           title: 'Lab 2.2 - 3D Projective Geometry and Stereo Reconstruction',
           description: "",
           section: "Projects",handler: () => {
+              window.location.href = "/cmput428labs/3dgeometry_HIDDEN";
+            },},{id: "projects-lab-2-2-3d-projective-geometry-and-stereo-reconstruction",
+          title: 'Lab 2.2 - 3D Projective Geometry and Stereo Reconstruction',
+          description: "",
+          section: "Projects",handler: () => {
               window.location.href = "/cmput428labs/3dgeometry";
+            },},{id: "projects-lab-3-structure-from-motion",
+          title: 'Lab 3 - Structure from Motion',
+          description: "",
+          section: "Projects",handler: () => {
+              window.location.href = "/cmput428labs/structurefrommotion_HIDDEN";
             },},{id: "projects-lab-3-structure-from-motion",
           title: 'Lab 3 - Structure from Motion',
           description: "",
