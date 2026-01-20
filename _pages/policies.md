@@ -18,7 +18,7 @@ profile:
     <p>mj7@ualberta.ca</p>
     <br>
     <br>
-    <h5>Allie Luo</h5>
+    <h5>Allie Wang</h5>
     <p>luo3@ualberta.ca</p>
     <br>
     <br>
