@@ -298,6 +298,6 @@ Repeat the following for each dataset and include each figure in your code submi
 - Organize files as follows:
   - `code/` folder containing all scripts used in the assignment.
   - `media/` folder for images, videos, and results.
-- Final submission format: a single zip file named `CompVisW25_lab3_lastname_firstname.zip` containing the above structure.
+- Final submission format: a single zip file named `CompVisW26_lab3_lastname_firstname.zip` containing the above structure.
 - Your report for Lab 3 is to be submitted at a later date. The report contains all media, results, and answers as specified in the instructions above. Ensure your answers are concise and directly address the questions.
 - Total marks for this lab is __100__ for all students. Your lab assignment grade with bonus marks is capped at __130%__.

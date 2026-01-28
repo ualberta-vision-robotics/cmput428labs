@@ -36,7 +36,7 @@ profile:
 
 - Office hours are by appointment via email.
 
-- Code is submitted for each lab in a single zip file named `CompVisW25_lab#_lastname_firstname.zip` where `#` is 1.1, 1.2, etc.
+- Code is submitted for each lab in a single zip file named `CompVisW26_lab#_lastname_firstname.zip` where `#` is 1.1, 1.2, etc.
 
 - Demos and report submissions occur at the end of each topic. Sign up sheets will be released closer to demo dates.
 
