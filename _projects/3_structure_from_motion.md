@@ -2,7 +2,7 @@
 layout: page
 title: Lab 3 - Structure from Motion
 description:
-permalink: /structurefrommotion_HIDDEN # changed to show version w/o qns for now
+permalink: /structurefrommotion # changed to show version w/o qns for now
 img: 
 importance: 1
 category: Structure from Motion
@@ -27,12 +27,31 @@ Right: Fill matrix visualization showing gradual accumulation of observations ac
 
 ## Overview
 
-In this assignment you will implement an **affine factorization** method for structure from motion. You will then extend it to handle **missing data** (occlusions) via matrix completion, and perform a **metric upgrade** to recover the true Euclidean structure. You will test your implementation on provided datasets and on your own videos, and document your results with code, figures, and analysis.
+In this assignment you will implement an **affine factorization** method for structure from motion. You will then extend it to perform a **metric upgrade** to recover the true Euclidean structure. You will test your implementation on provided datasets and on your own videos, and document your results with code, figures, and analysis.
 
-__Important: You can obtain 3 bonus marks for each section you finish and demo while present during the lab period we introduce the lab.__
+__Important: You can obtain 2 bonus marks for each section you finish and demo while present during the lab period we introduce the lab.__
+
+__Lab Introduction Slides:__ [available here](https://drive.google.com/file/d/1WO_6l_5ahdXfd3KD4GXC_8o5GZIDWVxt/view?usp=drive_link)
+
+
+## Prelab Questions (5%)
+
+The link to the prelab questions [can be found here](https://docs.google.com/document/d/1fvlDDaNz-Rpgvy0fRTXoXno6cYgGdCDelvnrAFbNlWU/edit?usp=sharing). You will need your University of Alberta email for access; they are also available under the Canvas assignment. __Due Tuesday, March 3rd at 5pm.__ 
 
 ---
-## 1: Affine Factorization Method (30)
+
+## Setup
+
+__First, download the lab code and report templates.__ These contain the structure for your report, and the file structure for your code. You can write your code however you wish within the files; however, please ensure that it is adequately commented, and that each part of the lab can be run by running the file corresponding to that question.
+
+You will need to use your University of Alberta email to access the below templates.
+
+Code template: [can be found here.](https://drive.google.com/file/d/1Ekj8H6lKf_nT5LgrRhr1Vs7xFEdgSzqN/view?usp=drive_link)
+
+Report template: [can be found here.](https://docs.google.com/document/d/1__gIg8VwW_CSDC29df8aPO6hyBeuQaVjwcyFKl6CP4A/edit?usp=sharing)
+
+---
+## 1: Affine Factorization Method (45)
 **Background:** The affine factorization algorithm (described in Section 18.2 in Hartley & Zisserman, 2nd ed.) implements the Tomasi–Kanade method for Structure from Motion under an **orthographic projection** assumption.
 
 The key insight is that when tracking $$P$$ feature points across $$F$$ frames (views), the resulting $$2F \times P$$ **measurement matrix** will have rank 3 for a rigid scene under orthographic projection, after proper normalization (centering). This matrix can be factored into motion and shape matrices via Singular Value Decomposition (SVD).
@@ -53,7 +72,7 @@ Right: Example of a 3D reconstruction output.
 **Task:**
 
 Implement the affine structure-from-motion algorithm following the procedure from [Lecture 07](https://ugweb.cs.ualberta.ca/~vis/courses/CompVis/lectures24/lec07modeling18EmbMedia.pdf) (slides 27–30) or the textbook on the following two datasets:
-- The [hotel dataset found here](https://slazebni.cs.illinois.edu/fall22/assignment5.html). In the zip, the measurement matrix can be found in the .txt.
+- The [hotel dataset found here]({{"assets/labs/house_factorization_data.zip" | relative_url}}). In the zip, the measurement matrix can be found in the .txt.
 - A short video you record yourself. You may use [feature_tracker.py]({{"/assets/labs/feature_tracker.py" | relative_url}}){:target="_blank"} which finds good feature points, tracks them, and performs a global optimization to refine the tracking if you wish.
 
 1. **Form the measurement matrix $$W$$** using tracked feature coordinates:
@@ -94,7 +113,7 @@ capture_motion.py can be used to record videos of textured 3D meshes.
 In your report, discuss what happens when applying this method to your own video data. Note that real cameras are projective, not orthographic, so your method might not perfectly reconstruct real video data. Analyze the differences and limitations you observe.
 
 ---
-## 2: Metric Upgrade; Euclidean Reconstruction (30)
+## 2: Metric Upgrade; Euclidean Reconstruction (40)
 
 The factorization method you implemented in Part 1 yields a reconstruction that is **affine** – meaning it's determined only up to an arbitrary linear transformation in 3D space. To recover the true Euclidean structure (up to a scale factor), we need to enforce that camera motions correspond to **orthonormal rotations**. This refinement process is known as the **metric upgrade** or **affine to metric calibration**.
 
@@ -173,122 +192,81 @@ Image from "Shape and Motion from Image Streams under Orthography: A Factorizati
 
 Your final scaled reconstruction should now have proper real-world dimensions, allowing for 'accurate' measurements and integration with other 3D models or systems.
 
-### Bonus (10) - Metric upgrade on your own data
-- **Perform** the same **metric upgrade** on your own video (this can be the same video you captured for Question 1). Include the 3D metric reconstruction in your code submission and report, and evaluate **its accuracy**
-
 **Deliverables:**
 
 Using the provided Hotel data, save the following figures to include in your code submission and display them in your report:
 1. Plot the recovered **3D point cloud** (obtained from $$S$$)
-2. Visualize the **camera positions** (obtained from $$R$$) in 3D
-3. Evaluate its accuracy
+2. Evaluate its accuracy
 
 **Report Question 2:**
 
 Visualize the 3D reconstruction before and after the metric upgrade. Analyze, using your own methods, how the metric upgrade affects the quality of the reconstruction. How good are your between reconstructed distances compaird to the known distances?
 
----
-## 3: Handling Missing Data; Matrix Completion (40)
-
-In practice, not all feature points are visible in all frames – points may **disappear** due to occlusion or tracking loss. The basic factorization method in part 1 & 2 requires a complete measurement matrix, so we want to extend it to handle missing entries.
-
-The approach you will implement is based on Tomasi and Kanade's paper _"Shape and Motion from Image Streams under Orthography: A Factorization Method"_ (IJCV 1992), which proposes an iterative strategy to handle occlusions. The idea is to start with initial estimates for the missing values, factorize the matrix, and then **gradually refine** the estimates by leveraging the low-rank structure of $$W$$.
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/recon_sphere.png" title="reconstructed sphere" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/sphere1.gif" title="orthographic image sequence" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/sphere2.gif" title="fill matrix" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-Left: Reconstructed sphere from a sequence of orthographic images. <br>
-Middle: Orthographic image sequence.<br>
-Right: Fill matrix visualization showing gradual accumulation of observations across frames (shaded entries are known image coordinates).
-</div>
-
-**Key concept:** Define a **fill matrix** (or mask matrix) of the same size as $$W$$, with entries:
-- 1 for observed measurements
-- 0 for missing ones
-The fill matrix lets us compute errors or updates **only on observed entries** while ignoring missing ones during the optimization process.
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/cow.png" title="moo" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/horse.png" title="neigh" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/stanford_bunny.png" title="what sound do rabbits make?" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-Cow, Horse, and Stanford bunny models.
-</div>
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/cowmesh_fill_matrix.png" title="cow fill matrix" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/horsemesh_fill_matrix.png" title="horse fill matrix" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/bunnymesh_fill_matrix.png" title="bunny fill matrix" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-Examples of fill matrices for the above models (shaded entries are known image coordinates).
-</div>
-
-
-**Task:**
-
-Implement matrix completion for Structure from Motion using the iterative factorization approach:
-1. **Initialize missing entries** in the measurement matrix:
-    - For each point with missing observations, fill in the gaps with reasonable estimates (e.g., the mean of that point's observed projections across frames)
-    - Center the data by removing per-camera translation (row-wise centering)
-2. **Perform initial factorization** using SVD to obtain rank-3 approximation:
-    - Decompose the filled measurement matrix into motion matrix $$M$$ and shape matrix $$S$$
-3. **Iterative refinement**:
-    - Project the current estimates to reconstruct the measurement matrix: $$W_{recon} = M \times S$$
-    - Replace the reconstructed values at known positions with the original measurements (using the fill matrix)
-    - Re-factorize using SVD to obtain updated $$M$$ and $$S$$
-    - Compute reconstruction error over known entries
-    - Repeat until convergence or maximum iterations reached
-4. **Metric upgrade**:
-	- Enforce orthonormality constraints on the camera rows
-	- Apply the appropriate transformation to recover the motion and shape matrices
-
-### Bonus (10) - Meshing
-- Mesh your resulting 3D point cloud and include it in your code submission and report. Describe the meshing algorithm you implemented or library you utilized (e.g., Ball-Pivoting, Poisson Surface Reconstruction, Alpha Shapes). Explain why you selected this particular meshing approach and its suitability for the structure-from-motion point clouds. 
+### e) Metric upgrade on your own data
+Now we will perform the same **metric upgrade** on your own video data. 
 
 **Deliverables:**
 
-First test your implementation on the [sphere dataset](https://drive.google.com/drive/folders/1Rt-7p-AqWPCVtOgH-QbcfpDTCKoalzie?usp=drive_link) and then evaluate it on the [Cow](https://drive.google.com/drive/folders/1lZjl-x2dLMpfeujZsG8HYRtb0whtfA6F?usp=drive_link), [Horse](https://drive.google.com/drive/folders/19_s9aCQqcTsHty9cytsjz4EljkvuOuUg?usp=drive_link), and [Stanford Bunny](https://drive.google.com/drive/folders/1OnRPGfHeadjpeMXvLq9GEjTr56ANE28r?usp=drive_link) datasets. 
+Record two different video sequences to run through your affine reconstruction pipeline. These can use the same or different objects; one of them can be the video you captured for Question 1. 
 
-Repeat the following for each dataset and include each figure in your code submission and report:
-1. Plot the recovered **3D point cloud** (obtained from $$S$$)
-2. Visualize the **camera positions/orientations** (obtained from $$R$$) in 3D
+One of your videos should lead to a **successful reconstruction**, and the other should result in a **poor reconstruction**.
 
-**Extra Tools and Resources:**
-- More 3D models [can be obtained here](https://github.com/alecjacobson/common-3d-test-models/tree/master).
-- You may use [mesh_experiment.py]({{"/assets/labs/mesh_experiment.py" | relative_url}}){:target="_blank"} to load a mesh and track points from an orthographic camera which will then output a measurement matrix and a fill matrix.
+For each video:
+1. Plot the recovered 3D point cloud from your video (obtained from $$S$$)
+2. Evaluate its accuracy
 
-**Report Question 3:**
-<ol type="a">
-<li>Analyze the quality of each of the reconstructions you achieved.</li>
-<li>Why can't we directly apply SVD to a matrix with missing entries?</li>
-<li>How does the low-rank assumption allow us to recover missing values?</li>
-<li>Explain the role of the fill matrix in computing reprojection error or updates.</li>
-<li>Compare the convergence behavior for different datasets. How many iterations were needed? Did the error decrease smoothly?</li>
-</ol>
----
+For your poor reconstruction video, **do not simply shake the camera, or make other violent motions/lighting changes that lead to complete tracking failure**. The goal is not to evaluate tracking, but your reconstruction algorithm, and to understand what kinds of camera motion or capturing scenarios can lead to failure. 
+
+**Report Question 3a)**: In your successful reconstruction, what kind of camera motion did you use? Why is this movement appropriate?
+
+**Report Question 3b)**: In your poor reconstruction, what kind of camera motion did you use? Why does this cause the reconstruction to fail?
+
+
+## 3: Meshing and Texturing (15)
+
+<div class="row justify-content-sm-center">
+    <div class="col-sm-12 mt-3 mt-md-0">
+        {% include figure.liquid path="assets/img/example_house.png" title="Example Hotel Reconstruction" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+Example textured 3D model from our hotel reconstruction.
+</div>
+
+Now that we have a euclidean reconstruction, we can turn it into a 3D mesh and texture it to create a rough 3D model of our object. We will use a simple approach to this. Given a single image from our dataset, we first can **triangulate** our points to create a mesh, which we can then **texture** by mapping pixels in an image to the vertices of our mesh triangles. We will then create a `.obj` file containing our mesh.
+
+To simplify this process, we will make use of libraries for triangulation and 3D geometry. Specifically we will need `scipy` and `open3d`, which can be installed by `pip install scipy open3d`.
+
+The file `q3_texturing.py` contains a partially completed function `save_textured_mesh()` which creates a mesh given your 3D reconstructed points, and an image with its corresponding 2D points. It also contains code for saving the mesh as an `obj`. 
+
+However, this function is missing the texture mapping, which tells the mesh where in the image to look for the texture of each triangle. Your job is to complete this part of the code, and then use it to generate a mesh for both the hotel data and your own data. You need to:
+1. Create a vector to store the (u,v) texture coordinates for each point of each triangle
+2. Fill in the (u,v) coordinats for each point, **normalized to 0-1 range, where (0, 0) is the bottom left corner**. 
+
+This function will save your mesh as a `.obj` file, with an accompanying `.png` for the texture image, and a `.mtl` file that specifies the material properties for the obj. These can be viewed in a standard 3D viewer such as blender, or a online at https://3dviewer.net/.
+
+
+
+**Deliverables:**
+- Include the `.obj`, `.mtl`, and `.png` files for each mesh in your media folder. 
+- Include an image of your meshes in your report.
+
+**Report Question 4a)**: How does the quality of your reconstruction affect the final mesh?
+
+**Report Question 4b)**: Which frame did you choose for your texture image? How might this choice affect your result? 
+
+### Bonus (10) - Triangulation
+- Implement your own triangulation procedure, rather than using the provided `scipy.spatial.Delaunay`. You likely will need to modify other parts of the `save_textured_mesh` function if you choose to do this. Using an alternate library for triangulation would not count for this question.
+
+**Deliverables:**
+- Describe how your triangulation procedure works in your report.
+
+### Bonus (10) - Alternate Meshing
+- Use another algorithm to mesh one of your resulting 3D point clouds and include it in your code submission (media folder) and report. Describe the meshing algorithm you implemented or library you utilized (e.g., Ball-Pivoting, Poisson Surface Reconstruction, Alpha Shapes). Explain why you selected this particular meshing approach and its suitability for the structure-from-motion point clouds. 
+
+**Deliverables:**
+- Include the resulting mesh in your report, as well as your discussion of your meshing approach.
+
 ---
 
 ## Submission Details
@@ -300,4 +278,4 @@ Repeat the following for each dataset and include each figure in your code submi
   - `media/` folder for images, videos, and results.
 - Final submission format: a single zip file named `CompVisW26_lab3_lastname_firstname.zip` containing the above structure.
 - Your report for Lab 3 is to be submitted at a later date. The report contains all media, results, and answers as specified in the instructions above. Ensure your answers are concise and directly address the questions.
-- Total marks for this lab is __100__ for all students. Your lab assignment grade with bonus marks is capped at __130%__.
+- Total marks for this lab is __100__ for all students. Your lab assignment grade with bonus marks is capped at __110%__.
